@@ -1,6 +1,5 @@
 package banquemisr.com.sensiorservice.utils
 
-import banquemisr.com.sensiorservice.utils.Constants.BASE_URL
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.boot.web.client.RootUriTemplateHandler
 import org.springframework.context.annotation.Bean
@@ -14,7 +13,7 @@ import java.time.Duration
 class RestTemplateConfig {
     @Bean
     fun restTemplate(builder: RestTemplateBuilder): RestTemplate? {
-        val uriTemplateHandler: UriTemplateHandler = RootUriTemplateHandler(BASE_URL)
+        val uriTemplateHandler: UriTemplateHandler = RootUriTemplateHandler(Constants.IRRIGATION_SERVICE_BASE_URL)
         return builder
             .uriTemplateHandler(uriTemplateHandler)
             .setReadTimeout(Duration.ofMillis(1000))
