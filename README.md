@@ -42,5 +42,8 @@ mongodb+srv://banquemisr:nvfYiV4HHsj4FVkE@banquemisr.r01q6gc.mongodb.net/
 - In alert service i used firebase to send push notifications using FCM (Firebase Cloud Messaging)
 
   ![image](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/023da683-ef8e-4001-a615-b2b3bcaa6ead)
+### DataLayer - GitHub Package 
+- to prevent existance of duplicate code between the services like models classes "datalayer" it been published as dependency on github packages and been consumed at the services
+![image](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/fc5d5056-6762-469b-a016-886a830c365e)
 
 
