@@ -1,0 +1,101 @@
+name: CI/CD Pipeline
+
+on:
+  workflow_dispatch:
+  push:
+   branches: [ "production" ]
+
+jobs:
+  development:
+    runs-on: ubuntu-latest
+    if: github.event.ref == 'refs/heads/development'
+    environment: development
+    steps:
+      - name: Step 
+        run: echo "Step"
+        
+  build:
+    runs-on: ubuntu-latest
+    environment: development
+    needs: [ development ]
+    steps:
+      - name: Step 
+        run: echo "Step"
+        
+  deploy-docker:
+    runs-on: ubuntu-latest
+    environment: development
+    needs: [ development ]
+    steps:
+      - name: Step 
+        run: echo "Step"
+  deploy-aws:
+    runs-on: ubuntu-latest
+    environment: development
+    needs: [ development ]
+    steps:
+      - name: Step 
+        run: echo "Step"
+  
+  stagging:
+    runs-on: ubuntu-latest
+    environment: development
+    if: github.event.ref == 'refs/heads/stagging'
+    steps:
+      - name: Stagging Step 
+        run: echo "Print Stagging Step"
+        
+  build-stg:
+    runs-on: ubuntu-latest
+    environment: development
+    needs: [ stagging ]
+    steps:
+      - name: Step 
+        run: echo "Step"
+        
+  deploy-docker-stg:
+    runs-on: ubuntu-latest
+    environment: development
+    needs: [ stagging ]
+    steps:
+      - name: Step 
+        run: echo "Step"
+  deploy-aws-stg:
+    runs-on: ubuntu-latest
+    environment: development
+    needs: [ stagging ]
+    steps:
+      - name: Step 
+        run: echo "Step"
+        
+        
+  production:
+    runs-on: ubuntu-latest
+    environment: development
+    if: github.event.ref == 'refs/heads/production'
+    steps:
+      - name: Deployment Step 
+        run: echo "Print Stagging Step"
+        
+  build-prod:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: [ production ]
+    steps:
+      - name: Step 
+        run: echo "Step"
+        
+  deploy-docker-prod:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: [ production ]
+    steps:
+      - name: Step 
+        run: echo "Step"
+  deploy-aws-prod:
+    runs-on: ubuntu-latest
+    environment: production
+    needs: [ production ]
+    steps:
+      - name: Step 
+        run: echo "Step"
