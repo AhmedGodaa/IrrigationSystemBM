@@ -1,4 +1,9 @@
 # IrrigationSystem
+### System Sequence
+
+![adf drawio](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/f6bd0cf9-05b9-4038-9722-88ae40428f96)
+
+
 ### Secrets
 - In Development, it shouldn't upload any credentials or any sensitive data to GitHub like Database credentials, API keys, Firebase, etc.
 - We should always use environment variables to store credentials and sensitive data
