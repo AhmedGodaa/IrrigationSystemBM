@@ -7,7 +7,7 @@ import banquemisr.com.irrigationsystem.model.dto.request.LandIrrigateRequest
 import banquemisr.com.irrigationsystem.model.dto.response.*
 import banquemisr.com.irrigationsystem.repositories.LandRepo
 import org.springframework.stereotype.Service
-import java.time.LocalTime
+import java.util.*
 
 @Service
 class LandService(
@@ -95,8 +95,8 @@ class LandService(
     fun createLand(landRequest: CreateLandRequest?): CreateNewLandResponse {
         if (landRequest != null) {
             if (landRequest.id == null) {
-                landRequest.irrigationDate = LocalTime.now().toString()
-                landRequest.irrigationEndDate = LocalTime.now().toString()
+                landRequest.irrigationDate = Date().time.toString()
+                landRequest.irrigationEndDate = Date().time.toString()
                 landRequest.irrigationStatus = false
                 if (landRequest.area == null) {
                     landRequest.area = 1.0

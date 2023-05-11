@@ -16,7 +16,7 @@ class RestTemplateConfig {
         val uriTemplateHandler: UriTemplateHandler = RootUriTemplateHandler(Constants.IRRIGATION_SERVICE_BASE_URL)
         return builder
             .uriTemplateHandler(uriTemplateHandler)
-            .setReadTimeout(Duration.ofMillis(1000))
+            .setReadTimeout(Duration.ofMillis(10000))
             .build()
     }
 

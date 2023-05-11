@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.net.URI
 import java.time.LocalDateTime
+import java.util.*
 
 
 @Service
@@ -36,24 +37,24 @@ class SensorService(
 
             val lands = responseEntity.body as GetListOfLandResponse
             lands.lands?.forEach {
-                if ((LocalDateTime.now()
-                        .toString()).toLong() >= (it.irrigationEndDate)?.toLong()!! && it.irrigationStatus == true
+                if ((Date().time.toString()).toLong() >= (it.irrigationEndDate)?.toLong()!! && it.irrigationStatus == true
                 ) {
                     println("irrigating land with id ${it.id}")
-                    it.irrigationDate = LocalDateTime.now().toString()
-                    it.irrigationEndDate = (LocalDateTime.now().plusMinutes(it.area?.times(5)!!.toLong())).toString()
+                    it.irrigationDate = Date().time.toString()
+                    it.irrigationEndDate = (Date().time + ((1000) * 60L * it.area!!)).toString()
                     restTemplate.postForEntity(
                         "$/api/irrigate",
                         it,
                         IrrigateResponse::class.java
                     )
                 } else {
-                    println("irrigation status is OFF")
+                    println("Irrigation Did Not Expire Yet Or Irrigation Is Turned OFF")
                 }
 
             }
 
         } else {
+            println("Notification Alert is been sent")
             sendNotification(
                 SendNotificationRequest(
                     recipeientToken = userFCMTokenRepo.findById(Constants.USER_ID).get().token,
