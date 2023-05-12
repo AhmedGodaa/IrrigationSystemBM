@@ -16,9 +16,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseUrl}}/api/getLandById?id=645c2a62e82a993912c5b29d",
+							"raw": "{{BaseUrlIrrigationService}}/api/getLandById?id=645d6f762334870f406fa264",
 							"host": [
-								"{{BaseUrl}}"
+								"{{BaseUrlIrrigationService}}"
 							],
 							"path": [
 								"api",
@@ -27,7 +27,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "645c2a62e82a993912c5b29d"
+									"value": "645d6f762334870f406fa264"
 								}
 							]
 						}
@@ -167,7 +167,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " {\r\n\r\n        \"name\": \"Land 1\",\r\n        \"area\": 2.3,\r\n        \"location\": \"Egypt\"\r\n\r\n}",
+							"raw": " {\r\n    \"name\": \"Land 4\",\r\n    \"area\": 22,\r\n    \"location\": \"Egypt\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -175,9 +175,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/api/createLand",
+							"raw": "{{BaseUrlIrrigationService}}/api/createLand",
 							"host": [
-								"{{BaseUrl}}"
+								"{{BaseUrlIrrigationService}}"
 							],
 							"path": [
 								"api",
@@ -316,7 +316,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": \"645c6fe013fb2140c4d5f130\",\r\n        \"name\": \"Land 1\",\r\n        \"area\": 4,\r\n        \"irrigationStatus\": false,\r\n        \"irrigationDate\": \"06:32:32.030457400\",\r\n        \"irrigationEndDate\": \"06:32:32.030457400\",\r\n        \"location\": \"Egypt\"\r\n    }",
+							"raw": "{\r\n            \"id\": \"645d6f7e2334870f406fa265\",\r\n            \"name\": \"Land 1\",\r\n            \"area\": 2.3,\r\n            \"irrigationStatus\": false,\r\n            \"irrigationDate\": \"1683844990374\",\r\n            \"irrigationEndDate\": \"1683844990374\",\r\n            \"location\": \"Egypt\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -324,9 +324,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/api/updateLand",
+							"raw": "{{BaseUrlIrrigationService}}/api/updateLand",
 							"host": [
-								"{{BaseUrl}}"
+								"{{BaseUrlIrrigationService}}"
 							],
 							"path": [
 								"api",
@@ -342,7 +342,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n        \"id\": \"645c6fe013fb2140c4d5f130\",\r\n        \"name\": \"Land 1\",\r\n        \"area\": 4,\r\n        \"irrigationStatus\": false,\r\n        \"irrigationDate\": \"06:32:32.030457400\",\r\n        \"irrigationEndDate\": \"06:32:32.030457400\",\r\n        \"location\": \"Egypt\"\r\n    }",
+									"raw": "{\r\n            \"id\": \"645d6f7e2334870f406fa265\",\r\n            \"name\": \"Land 1\",\r\n            \"area\": 2.3,\r\n            \"irrigationStatus\": false,\r\n            \"irrigationDate\": \"1683844990374\",\r\n            \"irrigationEndDate\": \"1683844990374\",\r\n            \"location\": \"Egypt\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -350,9 +350,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseUrl}}/api/updateLand",
+									"raw": "{{BaseUrlIrrigationService}}/api/updateLand",
 									"host": [
-										"{{BaseUrl}}"
+										"{{BaseUrlIrrigationService}}"
 									],
 									"path": [
 										"api",
@@ -386,7 +386,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 11 May 2023 04:36:59 GMT"
+									"value": "Thu, 11 May 2023 23:48:05 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -398,7 +398,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"Land Updated Successfully\",\n    \"land\": {\n        \"id\": \"645c6fe013fb2140c4d5f130\",\n        \"name\": \"Land 1\",\n        \"area\": 4,\n        \"irrigationStatus\": false,\n        \"irrigationDate\": \"06:32:32.030457400\",\n        \"irrigationEndDate\": \"06:32:32.030457400\",\n        \"location\": \"Egypt\"\n    }\n}"
+							"body": "{\n    \"message\": \"Land Updated Successfully\",\n    \"land\": {\n        \"id\": \"645d6f7e2334870f406fa265\",\n        \"name\": \"Land 1\",\n        \"area\": 2.3,\n        \"irrigationStatus\": false,\n        \"irrigationDate\": \"1683844990374\",\n        \"irrigationEndDate\": \"1683844990374\",\n        \"location\": \"Egypt\"\n    }\n}"
 						},
 						{
 							"name": "Negative - Update Land",
@@ -482,9 +482,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/api/deleteLand?id=645c70fd13fb2140c4d5f132",
+							"raw": "{{BaseUrlIrrigationService}}/api/deleteLand?id=645d6f762334870f406fa264",
 							"host": [
-								"{{BaseUrl}}"
+								"{{BaseUrlIrrigationService}}"
 							],
 							"path": [
 								"api",
@@ -493,7 +493,7 @@
 							"query": [
 								{
 									"key": "id",
-									"value": "645c70fd13fb2140c4d5f132"
+									"value": "645d6f762334870f406fa264"
 								}
 							]
 						}
@@ -643,9 +643,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseUrl}}/api/getAllLands",
+							"raw": "{{BaseUrlIrrigationService}}/api/getAllLands",
 							"host": [
-								"{{BaseUrl}}"
+								"{{BaseUrlIrrigationService}}"
 							],
 							"path": [
 								"api",
@@ -655,14 +655,14 @@
 					},
 					"response": [
 						{
-							"name": "Possitive - Get All Lands",
+							"name": "Get All Lands",
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BaseUrl}}/api/getAllLands",
+									"raw": "{{BaseUrlIrrigationService}}/api/getAllLands",
 									"host": [
-										"{{BaseUrl}}"
+										"{{BaseUrlIrrigationService}}"
 									],
 									"path": [
 										"api",
@@ -696,7 +696,7 @@
 								},
 								{
 									"key": "Date",
-									"value": "Thu, 11 May 2023 00:56:44 GMT"
+									"value": "Thu, 11 May 2023 23:44:13 GMT"
 								},
 								{
 									"key": "Keep-Alive",
@@ -708,7 +708,7 @@
 								}
 							],
 							"cookie": [],
-							"body": "{\n    \"message\": \"Success\",\n    \"lands\": [\n        {\n            \"id\": \"645c2a62e82a993912c5b29d\",\n            \"name\": \"Land 1\",\n            \"area\": 4,\n            \"irrigationDate\": null,\n            \"irrigationEndDate\": null,\n            \"location\": \"Egypt\",\n            \"soilType\": \"Dessert\",\n            \"crop\": null,\n            \"irrigationSystem\": null\n        },\n        {\n            \"id\": \"645c2ad7eaef0e562dcd5f2a\",\n            \"name\": \"Land 2\",\n            \"area\": 2.3,\n            \"irrigationDate\": null,\n            \"irrigationEndDate\": null,\n            \"location\": \"Egypt\",\n            \"soilType\": \"Dessert\",\n            \"crop\": null,\n            \"irrigationSystem\": null\n        },\n        {\n            \"id\": \"645c2b3890610c1d915fe008\",\n            \"name\": \"Land 3\",\n            \"area\": 2.3,\n            \"irrigationDate\": null,\n            \"irrigationEndDate\": null,\n            \"location\": \"Egypt\",\n            \"soilType\": \"Dessert\",\n            \"crop\": null,\n            \"irrigationSystem\": null\n        },\n        {\n            \"id\": \"645c2ba31a6e8236b9b83df8\",\n            \"name\": \"Land 4\",\n            \"area\": 2.3,\n            \"irrigationDate\": null,\n            \"irrigationEndDate\": null,\n            \"location\": \"Egypt\",\n            \"soilType\": \"Dessert\",\n            \"crop\": null,\n            \"irrigationSystem\": null\n        },\n        {\n            \"id\": \"645c2c141a6e8236b9b83df9\",\n            \"name\": \"Land 5\",\n            \"area\": 2.3,\n            \"irrigationDate\": null,\n            \"irrigationEndDate\": null,\n            \"location\": \"Egypt\",\n            \"soilType\": \"Dessert\",\n            \"crop\": null,\n            \"irrigationSystem\": null\n        },\n        {\n            \"id\": \"645c2ce4c1d56c1339635883\",\n            \"name\": \"Land 6\",\n            \"area\": 2.3,\n            \"irrigationDate\": null,\n            \"irrigationEndDate\": null,\n            \"location\": \"Egypt\",\n            \"soilType\": \"Dessert\",\n            \"crop\": null,\n            \"irrigationSystem\": null\n        },\n        {\n            \"id\": \"645c35140d0e633a739fa7c8\",\n            \"name\": \"Land 7\",\n            \"area\": 2.3,\n            \"irrigationDate\": null,\n            \"irrigationEndDate\": null,\n            \"location\": \"Egypt\",\n            \"soilType\": \"Dessert\",\n            \"crop\": null,\n            \"irrigationSystem\": null\n        }\n    ]\n}"
+							"body": "{\n    \"message\": \"All Lands Found Successfully\",\n    \"lands\": [\n        {\n            \"id\": \"645d6f762334870f406fa264\",\n            \"name\": \"Land 15\",\n            \"area\": 2.3,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683844982747\",\n            \"irrigationEndDate\": \"1683844982747\",\n            \"location\": \"Egypt\"\n        },\n        {\n            \"id\": \"645d6f7e2334870f406fa265\",\n            \"name\": \"Land 1\",\n            \"area\": 2.3,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683844990374\",\n            \"irrigationEndDate\": \"1683844990374\",\n            \"location\": \"Egypt\"\n        },\n        {\n            \"id\": \"645d6f842334870f406fa266\",\n            \"name\": \"Land 2\",\n            \"area\": 2.3,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683844996021\",\n            \"irrigationEndDate\": \"1683844996021\",\n            \"location\": \"Egypt\"\n        },\n        {\n            \"id\": \"645d6f872334870f406fa267\",\n            \"name\": \"Land 3\",\n            \"area\": 2.3,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683844999969\",\n            \"irrigationEndDate\": \"1683844999969\",\n            \"location\": \"Egypt\"\n        },\n        {\n            \"id\": \"645d6f942334870f406fa268\",\n            \"name\": \"Land 4\",\n            \"area\": 22,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683845012945\",\n            \"irrigationEndDate\": \"1683845012945\",\n            \"location\": \"Egypt\"\n        }\n    ]\n}"
 						}
 					]
 				},
@@ -719,7 +719,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\":\"645c9b816c72b4600a479e0c\",\r\n    \"irrigationDate\": \"06:32:32.030457400\",\r\n    \"irrigationEndDate\": \"06:32:32.030457401\"\r\n}",
+							"raw": "{\r\n    \"id\":\"645c9b816c72b4600a479e0c\",\r\n    \"irrigationDate\": \"1683844982747\",\r\n    \"irrigationEndDate\": \"1683844982747\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -727,9 +727,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/api/irrigate",
+							"raw": "{{BaseUrlIrrigationService}}/api/irrigate",
 							"host": [
-								"{{BaseUrl}}"
+								"{{BaseUrlIrrigationService}}"
 							],
 							"path": [
 								"api",
@@ -885,9 +885,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{BaseUrl}}/api/changeStatus",
+							"raw": "{{BaseUrlIrrigationService}}/api/changeStatus",
 							"host": [
-								"{{BaseUrl}}"
+								"{{BaseUrlIrrigationService}}"
 							],
 							"path": [
 								"api",
@@ -1099,30 +1099,304 @@
 			"name": "Sensor Service",
 			"item": [
 				{
-					"name": "Turn Sensor Off",
+					"name": "Turn Sensor ON",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "{{BaseUrlSensorService}}/api/turnOn",
+							"raw": "{{BaseUrlSensorService}}/api/turnOnSensor",
 							"host": [
 								"{{BaseUrlSensorService}}"
 							],
 							"path": [
 								"api",
-								"turnOn"
+								"turnOnSensor"
 							]
 						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Turn Sensor ON",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrlSensorService}}/api/turnOnSensor",
+									"host": [
+										"{{BaseUrlSensorService}}"
+									],
+									"path": [
+										"api",
+										"turnOnSensor"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:43:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Sensor is turned on\"\n}"
+						}
+					]
 				},
 				{
-					"name": "Turn Sensor On",
+					"name": "Turn Sensor Off",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrlSensorService}}/api/turnOffSensor",
+							"host": [
+								"{{BaseUrlSensorService}}"
+							],
+							"path": [
+								"api",
+								"turnOffSensor"
+							]
+						}
 					},
-					"response": []
+					"response": [
+						{
+							"name": "Turn Sensor Off",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrlSensorService}}/api/turnOffSensor",
+									"host": [
+										"{{BaseUrlSensorService}}"
+									],
+									"path": [
+										"api",
+										"turnOffSensor"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:42:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Sensor is turned off\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Save Sensor State",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"id\":\"1\",\r\n \"state\":true   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlSensorService}}/api/saveSensorState",
+							"host": [
+								"{{BaseUrlSensorService}}"
+							],
+							"path": [
+								"api",
+								"saveSensorState"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Save Sensor State",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"id\":\"1\",\r\n \"state\":true   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrlSensorService}}/api/saveSensorState",
+									"host": [
+										"{{BaseUrlSensorService}}"
+									],
+									"path": [
+										"api",
+										"saveSensorState"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:40:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"state\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Add User Get Alert By FCM",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlSensorService}}/api/updateUserFCMToken?token=tokenexampleshouldcomefromfrontendside",
+							"host": [
+								"{{BaseUrlSensorService}}"
+							],
+							"path": [
+								"api",
+								"updateUserFCMToken"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "tokenexampleshouldcomefromfrontendside"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add User Get Alert By FCM",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrlSensorService}}/api/updateUserFCMToken?token=tokenexampleshouldcomefromfrontendside",
+									"host": [
+										"{{BaseUrlSensorService}}"
+									],
+									"path": [
+										"api",
+										"updateUserFCMToken"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "tokenexampleshouldcomefromfrontendside"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:36:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User FCM Token is updated\"\n}"
+						}
+					]
 				}
 			]
 		},
