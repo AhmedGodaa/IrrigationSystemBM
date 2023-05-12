@@ -15,9 +15,10 @@
 ### MongoDB:
 MongoDB Access Url:  mongodb+srv://banquemisr:nvfYiV4HHsj4FVkE@banquemisr.r01q6gc.mongodb.net/
 
-### PostMan Collection:
+### Postman Collection:
 - Created 2 env vars for localhost & deployed server holding the server url
 - All requests have saved response example to show working scenario and negative scenario
+Postman Collection with enviroment variables exist here: https://github.com/AhmedGodaa/IrrigationSystemBM/tree/production/postman-collections
 
   ![image](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/7c401125-9996-4a37-81fa-bca540728abf)
   
