@@ -41,7 +41,7 @@ Postman Collection with enviroment variables exist here: https://github.com/Ahme
 - In alert service i used firebase to send push notifications using FCM (Firebase Cloud Messaging)
 
   ![image](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/023da683-ef8e-4001-a615-b2b3bcaa6ead)
-### DataLayer - GitHub Package 
+### API First Approach & GitHub Packages
 - to prevent existance of duplicate code between the services like models classes "datalayer" it been published as dependency on github packages and it should be consumed at the services
 ![image](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/fc5d5056-6762-469b-a016-886a830c365e)
 
