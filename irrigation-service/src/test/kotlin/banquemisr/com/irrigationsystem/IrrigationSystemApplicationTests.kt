@@ -1,13 +1,9 @@
 package banquemisr.com.irrigationsystem
 
-import org.junit.jupiter.api.Test
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class IrrigationSystemApplicationTests {
+class IrrigationSystemApplicationTests
 
-    @Test
-    fun contextLoads() {
-    }
-
-}
+fun Any.toJson(): String = jacksonObjectMapper().writeValueAsString(this)

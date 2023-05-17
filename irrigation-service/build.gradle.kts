@@ -24,6 +24,7 @@ dependencies {
     implementation("com.google.firebase:firebase-admin:9.1.1")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    testImplementation("io.mockk:mockk:1.13.5")
 }
 
 tasks.withType<KotlinCompile> {
