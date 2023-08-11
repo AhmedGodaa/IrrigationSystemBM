@@ -1,0 +1,1543 @@
+{
+	"info": {
+		"_postman_id": "786d6c95-812d-4f53-b473-0ebd7271ac40",
+		"name": "Irrigation System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17463077",
+		"_collection_link": "https://dark-rocket-523408.postman.co/workspace/Irrigation-System~ee2b41da-60f5-4544-b0e6-cfb11aa2e1a8/collection/17463077-786d6c95-812d-4f53-b473-0ebd7271ac40?action=share&creator=17463077&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Irrigation Service",
+			"item": [
+				{
+					"name": "Get Land By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrlIrrigationService}}/api/getLandById?id=645d6f762334870f406fa264",
+							"host": [
+								"{{BaseUrlIrrigationService}}"
+							],
+							"path": [
+								"api",
+								"getLandById"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "645d6f762334870f406fa264"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Possitive - Get Land By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/api/getLandById?id=645c2a62e82a993912c5b29d",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"getLandById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "645c2a62e82a993912c5b29d"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 00:50:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Found Successfully\",\n    \"land\": {\n        \"id\": \"645c2a62e82a993912c5b29d\",\n        \"name\": \"Land 1\",\n        \"area\": 2.3,\n        \"irrigationDate\": null,\n        \"irrigationEndDate\": null,\n        \"location\": \"Egypt\",\n        \"soilType\": \"Dessert\",\n        \"crop\": null,\n        \"irrigationSystem\": null\n    }\n}"
+						},
+						{
+							"name": "Negative - Get Land By ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/api/getLandById",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"getLandById"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "645c2a62e82a993912c5b29d",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 00:49:26 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land ID can't be Empty\",\n    \"land\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Land",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n    \"name\": \"Land 4\",\r\n    \"area\": 22,\r\n    \"location\": \"Egypt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlIrrigationService}}/api/createLand",
+							"host": [
+								"{{BaseUrlIrrigationService}}"
+							],
+							"path": [
+								"api",
+								"createLand"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Possitive - Create Land",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": " {\r\n\r\n        \"name\": \"Land 1\",\r\n        \"area\": 2.3,\r\n        \"location\": \"Egypt\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/createLand",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"createLand"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 04:32:32 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Created Successfully\",\n    \"land\": {\n        \"id\": \"645c6fe013fb2140c4d5f130\",\n        \"name\": \"Land 1\",\n        \"area\": 2.3,\n        \"irrigationStatus\": false,\n        \"irrigationDate\": \"06:32:32.030457400\",\n        \"irrigationEndDate\": \"06:32:32.030457400\",\n        \"location\": \"Egypt\"\n    }\n}"
+						},
+						{
+							"name": "Negative - Create Land",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrl}}/api/createLand",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"createLand"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 00:51:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Body Can't be Empty\",\n    \"land\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Land",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"id\": \"645d6f7e2334870f406fa265\",\r\n            \"name\": \"Land 1\",\r\n            \"area\": 2.3,\r\n            \"irrigationStatus\": false,\r\n            \"irrigationDate\": \"1683844990374\",\r\n            \"irrigationEndDate\": \"1683844990374\",\r\n            \"location\": \"Egypt\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlIrrigationService}}/api/updateLand",
+							"host": [
+								"{{BaseUrlIrrigationService}}"
+							],
+							"path": [
+								"api",
+								"updateLand"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Posstive - Update Land",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"id\": \"645d6f7e2334870f406fa265\",\r\n            \"name\": \"Land 1\",\r\n            \"area\": 2.3,\r\n            \"irrigationStatus\": false,\r\n            \"irrigationDate\": \"1683844990374\",\r\n            \"irrigationEndDate\": \"1683844990374\",\r\n            \"location\": \"Egypt\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrlIrrigationService}}/api/updateLand",
+									"host": [
+										"{{BaseUrlIrrigationService}}"
+									],
+									"path": [
+										"api",
+										"updateLand"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:48:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Updated Successfully\",\n    \"land\": {\n        \"id\": \"645d6f7e2334870f406fa265\",\n        \"name\": \"Land 1\",\n        \"area\": 2.3,\n        \"irrigationStatus\": false,\n        \"irrigationDate\": \"1683844990374\",\n        \"irrigationEndDate\": \"1683844990374\",\n        \"location\": \"Egypt\"\n    }\n}"
+						},
+						{
+							"name": "Negative - Update Land",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/updateLand",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"updateLand"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 00:55:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Body Can't be Empty\",\n    \"land\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Land",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlIrrigationService}}/api/deleteLand?id=645d6f762334870f406fa264",
+							"host": [
+								"{{BaseUrlIrrigationService}}"
+							],
+							"path": [
+								"api",
+								"deleteLand"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "645d6f762334870f406fa264"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Possitive - Delete Land",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/deleteLand?id=645c2f3dc435ad61dd350b2a",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"deleteLand"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "645c2f3dc435ad61dd350b2a"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 00:27:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Deleted Successfully\"\n}"
+						},
+						{
+							"name": "Negative - Delete  Land",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/deleteLand",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"deleteLand"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 00:31:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Please Enter Land ID\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Lands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrlIrrigationService}}/api/getAllLands",
+							"host": [
+								"{{BaseUrlIrrigationService}}"
+							],
+							"path": [
+								"api",
+								"getAllLands"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Lands",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrlIrrigationService}}/api/getAllLands",
+									"host": [
+										"{{BaseUrlIrrigationService}}"
+									],
+									"path": [
+										"api",
+										"getAllLands"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:44:13 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"All Lands Found Successfully\",\n    \"lands\": [\n        {\n            \"id\": \"645d6f762334870f406fa264\",\n            \"name\": \"Land 15\",\n            \"area\": 2.3,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683844982747\",\n            \"irrigationEndDate\": \"1683844982747\",\n            \"location\": \"Egypt\"\n        },\n        {\n            \"id\": \"645d6f7e2334870f406fa265\",\n            \"name\": \"Land 1\",\n            \"area\": 2.3,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683844990374\",\n            \"irrigationEndDate\": \"1683844990374\",\n            \"location\": \"Egypt\"\n        },\n        {\n            \"id\": \"645d6f842334870f406fa266\",\n            \"name\": \"Land 2\",\n            \"area\": 2.3,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683844996021\",\n            \"irrigationEndDate\": \"1683844996021\",\n            \"location\": \"Egypt\"\n        },\n        {\n            \"id\": \"645d6f872334870f406fa267\",\n            \"name\": \"Land 3\",\n            \"area\": 2.3,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683844999969\",\n            \"irrigationEndDate\": \"1683844999969\",\n            \"location\": \"Egypt\"\n        },\n        {\n            \"id\": \"645d6f942334870f406fa268\",\n            \"name\": \"Land 4\",\n            \"area\": 22,\n            \"irrigationStatus\": false,\n            \"irrigationDate\": \"1683845012945\",\n            \"irrigationEndDate\": \"1683845012945\",\n            \"location\": \"Egypt\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Irrigate Land",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"645c9b816c72b4600a479e0c\",\r\n    \"irrigationDate\": \"1683844982747\",\r\n    \"irrigationEndDate\": \"1683844982747\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlIrrigationService}}/api/irrigate",
+							"host": [
+								"{{BaseUrlIrrigationService}}"
+							],
+							"path": [
+								"api",
+								"irrigate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Irrigate Land",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"645c9b816c72b4600a479e0c\",\r\n    \"irrigationDate\": \"06:32:32.030457400\",\r\n    \"irrigationEndDate\": \"06:32:32.030457401\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/irrigate",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"irrigate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 07:51:07 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Irrigated Successfully\",\n    \"land\": {\n        \"id\": \"645c9b816c72b4600a479e0c\",\n        \"name\": \"Land 3\",\n        \"area\": 2.3,\n        \"irrigationStatus\": true,\n        \"irrigationDate\": \"06:32:32.030457400\",\n        \"irrigationEndDate\": \"06:32:32.030457401\",\n        \"location\": \"Egypt\"\n    }\n}"
+						},
+						{
+							"name": "Irrigate Land",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/irrigate",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"irrigate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 07:51:17 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Irrigate Request Can't be Empty\",\n    \"land\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Land Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":\"645c9b816c72b4600a479e0c\",\r\n    \"irrigationStatus\":true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlIrrigationService}}/api/changeStatus",
+							"host": [
+								"{{BaseUrlIrrigationService}}"
+							],
+							"path": [
+								"api",
+								"changeStatus"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Positive Change Status",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"645c9b816c72b4600a479e0c\",\r\n    \"irrigationStatus\":true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/changeStatus",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"changeStatus"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 07:39:16 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Irrigated Successfully\",\n    \"land\": {\n        \"id\": \"645c9b816c72b4600a479e0c\",\n        \"name\": \"Land 3\",\n        \"area\": 2.3,\n        \"irrigationStatus\": true,\n        \"irrigationDate\": \"06:32:32.030457400\",\n        \"irrigationEndDate\": \"06:32:32.030457400\",\n        \"location\": \"Egypt\"\n    }\n}"
+						},
+						{
+							"name": "Negative Change Land Status",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\":\"\",\r\n    \"irrigationStatus\":true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/changeStatus",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"changeStatus"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 07:41:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Land Not Found With This ID \",\n    \"land\": null\n}"
+						},
+						{
+							"name": "Negative Change Land Status",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrl}}/api/changeStatus",
+									"host": [
+										"{{BaseUrl}}"
+									],
+									"path": [
+										"api",
+										"changeStatus"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Method"
+								},
+								{
+									"key": "Vary",
+									"value": "Access-Control-Request-Headers"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 07:41:55 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Irrigate Request Can't be Empty\",\n    \"land\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Sensor Service",
+			"item": [
+				{
+					"name": "Turn Sensor ON",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrlSensorService}}/api/turnOnSensor",
+							"host": [
+								"{{BaseUrlSensorService}}"
+							],
+							"path": [
+								"api",
+								"turnOnSensor"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Turn Sensor ON",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrlSensorService}}/api/turnOnSensor",
+									"host": [
+										"{{BaseUrlSensorService}}"
+									],
+									"path": [
+										"api",
+										"turnOnSensor"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:43:20 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Sensor is turned on\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Turn Sensor Off",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{BaseUrlSensorService}}/api/turnOffSensor",
+							"host": [
+								"{{BaseUrlSensorService}}"
+							],
+							"path": [
+								"api",
+								"turnOffSensor"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Turn Sensor Off",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{BaseUrlSensorService}}/api/turnOffSensor",
+									"host": [
+										"{{BaseUrlSensorService}}"
+									],
+									"path": [
+										"api",
+										"turnOffSensor"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:42:22 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Sensor is turned off\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Save Sensor State",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"id\":\"1\",\r\n \"state\":true   \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlSensorService}}/api/saveSensorState",
+							"host": [
+								"{{BaseUrlSensorService}}"
+							],
+							"path": [
+								"api",
+								"saveSensorState"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Save Sensor State",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"id\":\"1\",\r\n \"state\":true   \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrlSensorService}}/api/saveSensorState",
+									"host": [
+										"{{BaseUrlSensorService}}"
+									],
+									"path": [
+										"api",
+										"saveSensorState"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:40:09 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"1\",\n    \"state\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Add User Get Alert By FCM",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlSensorService}}/api/updateUserFCMToken?token=tokenexampleshouldcomefromfrontendside",
+							"host": [
+								"{{BaseUrlSensorService}}"
+							],
+							"path": [
+								"api",
+								"updateUserFCMToken"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "tokenexampleshouldcomefromfrontendside"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add User Get Alert By FCM",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrlSensorService}}/api/updateUserFCMToken?token=tokenexampleshouldcomefromfrontendside",
+									"host": [
+										"{{BaseUrlSensorService}}"
+									],
+									"path": [
+										"api",
+										"updateUserFCMToken"
+									],
+									"query": [
+										{
+											"key": "token",
+											"value": "tokenexampleshouldcomefromfrontendside"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 23:36:39 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User FCM Token is updated\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Alert Service",
+			"item": [
+				{
+					"name": "Create Alert",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"recipeientToken\":\"ev1cJ4wNQRaWtYpFwvTF_P:APA91bE8QthW8652tbwNhwwfjew5z6rOR3Kj3s2mZo6VZf2OuVNwE1v-6B5P1NuPpw9rYN0acZjTg2v5k1zmcpw_eUT6za2VJhk-QFOPuQW9nTMVeAVjFmjjsk35WVMkCqoBYUPXeUNd\",\r\n    \"title\":\"Example Title Notification\",\r\n    \"body\":\"Example Body Notification\",\r\n    \"data\": {\r\n        \"key1\":\"Value 1\",\r\n        \"key2\":\"Value 2\"\r\n    }\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseUrlAlertService}}/api/sendNotification",
+							"host": [
+								"{{BaseUrlAlertService}}"
+							],
+							"path": [
+								"api",
+								"sendNotification"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Positive - Create Alert",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"recipeientToken\":\"ev1cJ4wNQRaWtYpFwvTF_P:APA91bE8QthW8652tbwNhwwfjew5z6rOR3Kj3s2mZo6VZf2OuVNwE1v-6B5P1NuPpw9rYN0acZjTg2v5k1zmcpw_eUT6za2VJhk-QFOPuQW9nTMVeAVjFmjjsk35WVMkCqoBYUPXeUNd\",\r\n    \"title\":\"Example Title Notification\",\r\n    \"body\":\"Example Body Notification\",\r\n    \"data\": {\r\n        \"key1\":\"Value 1\",\r\n        \"key2\":\"Value 2\"\r\n    }\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrlAlertService}}/api/sendNotification",
+									"host": [
+										"{{BaseUrlAlertService}}"
+									],
+									"path": [
+										"api",
+										"sendNotification"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 13:30:36 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Notification sent successfully\"\n}"
+						},
+						{
+							"name": "Negative - Create Alert",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"recipeientToken\":\"BA6Picu5Mm8ubiSxMj2gHAcYStpFOHOtaDGMrZCxRnWnwmvakvCLFw20_Z31Dl0o0igRKEzu6JLbdXwOpQan3as\",\r\n    \"title\":\"Example Title Notification\",\r\n    \"body\":\"Example Body Notification\",\r\n    \"data\": {\r\n        \"key1\":\"Value 1\",\r\n        \"key2\":\"Value 2\"\r\n    }\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseUrlAlertService}}/api/sendNotification",
+									"host": [
+										"{{BaseUrlAlertService}}"
+									],
+									"path": [
+										"api",
+										"sendNotification"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 11 May 2023 13:08:50 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Notification failed to send with exception: The registration token is not a valid FCM registration token\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
