@@ -2,7 +2,6 @@ package banquemisr.com.irrigationsystem.service
 
 import banquemisr.com.irrigationsystem.model.Land
 import banquemisr.com.irrigationsystem.model.dto.request.ChangeStatusRequest
-import banquemisr.com.irrigationsystem.model.dto.request.CreateLandRequest
 import banquemisr.com.irrigationsystem.model.dto.request.LandIrrigateRequest
 import banquemisr.com.irrigationsystem.model.dto.response.*
 import banquemisr.com.irrigationsystem.repositories.LandRepository
