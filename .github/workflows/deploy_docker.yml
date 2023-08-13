@@ -29,6 +29,7 @@ jobs:
           ./gradlew build
           docker build -t ahmedgodaa/alert-service:latest .
           docker push ahmedgodaa/alert-service:latest
+          cd ../
 
       - name: Build and Push Irrigation Service Docker image
         run: |
@@ -36,7 +37,8 @@ jobs:
           ./gradlew build  
           docker build -t ahmedgodaa/irrigation-service:latest .
           docker push ahmedgodaa/irrigation-service:latest
-          
+          cd ../
+
       - name: Build and Push Sensor Service Docker image
         run: |
           cd ../sensor-service
