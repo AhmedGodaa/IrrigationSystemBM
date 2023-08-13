@@ -1,6 +1,8 @@
 package com.banquemisr.alertservice.config
 
 
+import com.banquemisr.alertservice.exceptions.EntityNotFoundException
+import com.banquemisr.alertservice.exceptions.UnauthorizedException
 import org.slf4j.LoggerFactory
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -80,6 +82,3 @@ class GlobalExceptionHandler {
     data class Message(val message: String?)
 }
 
-class EntityNotFoundException(message: String) : RuntimeException(message)
-
-class UnauthorizedException(message: String) : RuntimeException(message)

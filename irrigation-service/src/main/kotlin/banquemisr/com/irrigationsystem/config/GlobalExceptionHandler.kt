@@ -1,5 +1,7 @@
 package banquemisr.com.irrigationsystem.config
 
+import banquemisr.com.irrigationsystem.exception.EntityNotFoundException
+import banquemisr.com.irrigationsystem.exception.UnauthorizedException
 import jakarta.validation.ConstraintViolationException
 import org.slf4j.LoggerFactory
 import org.springframework.dao.DataAccessException
@@ -103,6 +105,4 @@ class GlobalExceptionHandler {
     data class Message(val message: String?)
 }
 
-class EntityNotFoundException(message: String) : RuntimeException(message)
 
-class UnauthorizedException(message: String) : RuntimeException(message)
