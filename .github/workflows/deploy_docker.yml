@@ -23,19 +23,22 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build and push Docker images
+      - name: Build and Push Alert Service Docker image
         run: |
-
           cd alert-service
           ./gradlew build
           docker build -t ahmedgodaa/alert-service:latest .
           docker push ahmedgodaa/alert-service:latest
-          
+
+      - name: Build and Push Irrigation Service Docker image
+        run: |
           cd ../irrigation-service 
           ./gradlew build  
           docker build -t ahmedgodaa/irrigation-service:latest .
           docker push ahmedgodaa/irrigation-service:latest
           
+      - name: Build and Push Sensor Service Docker image
+        run: |
           cd ../sensor-service
           ./gradlew build     
           docker build -t ahmedgodaa/sensor-service:latest .
