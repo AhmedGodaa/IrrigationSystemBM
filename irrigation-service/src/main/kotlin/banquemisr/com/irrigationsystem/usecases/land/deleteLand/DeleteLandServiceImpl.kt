@@ -1,8 +1,7 @@
 package banquemisr.com.irrigationsystem.usecases.land.deleteLand
 
-import banquemisr.com.irrigationsystem.dto.DeleteLandRequest
+
 import banquemisr.com.irrigationsystem.model.Land
-import banquemisr.com.irrigationsystem.model.dto.response.DeleteLandResponse
 import banquemisr.com.irrigationsystem.repositories.LandRepository
 import banquemisr.com.irrigationsystem.validators.DeletionValidator
 import org.springframework.stereotype.Service
@@ -13,9 +12,9 @@ class DeleteLandServiceImpl(
     private val landRepository: LandRepository,
     private val deletionValidator: DeletionValidator<Land,String>
 ) : DeleteLandService {
-    override fun deleteLand(deleteLandRequest: DeleteLandRequest): DeleteLandResponse {
+    override fun deleteLand(deleteLandRequest: DeleteLandRequest?): DeleteLandResponse {
         deleteLandValidator.validate(deleteLandRequest)
-        val landId = deleteLandRequest.id!!
+        val landId = deleteLandRequest!!.id!!
         deletionValidator.validateExistence(landId, landRepository)
         deleteLandDB(landId)
         deletionValidator.validateDeletion(landId, landRepository)

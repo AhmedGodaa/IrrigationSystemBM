@@ -1,32 +1,27 @@
 package banquemisr.com.irrigationsystem.usecases.land.updateLand
 
-import banquemisr.com.irrigationsystem.dto.UpdateLandRequest
 import banquemisr.com.irrigationsystem.model.Land
-import banquemisr.com.irrigationsystem.model.dto.response.UpdateLandResponse
 import banquemisr.com.irrigationsystem.repositories.LandRepository
+import org.springframework.stereotype.Service
 
+@Service
 class UpdateLandServiceImpl(
-    private val updateLandService: UpdateLandService,
     private val updateLandValidator: UpdateLandValidator,
     private val landRepository: LandRepository
-) {
+) : UpdateLandService {
 
-    fun updateLand(updateLandRequest: UpdateLandRequest?): UpdateLandResponse {
+
+    override fun updateLand(updateLandRequest: UpdateLandRequest?): UpdateLandResponse {
         updateLandValidator.validateUpdateLandRequest(updateLandRequest)
         val currentLand = findLandDB(updateLandRequest!!.land!!.id!!)
         val land = updateLandRequest.land!!
         val landToUpdate = currentLand.copy(
-            name = land.name,
-            area = land.area,
-            irrigationStatus = land.irrigationStatus,
-            irrigationDate = land.irrigationDate,
-            irrigationEndDate = land.irrigationEndDate,
-            location = land.location
+
 
         )
         return UpdateLandResponse(
             message = "Land updated successfully",
-            land = updateLand(landToUpdate)
+            land = updateLandDB(landToUpdate)
         )
     }
 
@@ -37,7 +32,7 @@ class UpdateLandServiceImpl(
 
     }
 
-    private fun updateLand(land: Land): Land {
+    private fun updateLandDB(land: Land): Land {
         return try {
             landRepository.save(land)
         } catch (e: Exception) {
@@ -45,5 +40,7 @@ class UpdateLandServiceImpl(
         }
 
     }
+
+
 
 }

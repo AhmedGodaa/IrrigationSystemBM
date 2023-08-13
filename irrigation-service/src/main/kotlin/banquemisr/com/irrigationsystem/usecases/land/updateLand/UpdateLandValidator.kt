@@ -1,7 +1,4 @@
-package banquemisr.com.irrigationsystem.usecases.land.updateLand
-
-import banquemisr.com.irrigationsystem.dto.UpdateLandRequest
-import banquemisr.com.irrigationsystem.model.dto.response.UpdateLandResponse
+package banquemisr.com.irrigationsystem.usecases.land.updateLand;
 
 interface UpdateLandValidator {
     fun validateUpdateLandRequest(updateLandRequest: UpdateLandRequest?)

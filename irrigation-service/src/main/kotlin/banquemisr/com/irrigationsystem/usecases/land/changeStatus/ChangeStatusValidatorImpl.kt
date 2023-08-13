@@ -1,6 +1,11 @@
 package banquemisr.com.irrigationsystem.usecases.land.changeStatus
 
-class ChangeStatusValidatorImpl(
+import banquemisr.com.irrigationsystem.model.dto.request.ChangeStatusRequest
+import org.springframework.stereotype.Component
 
-) : ChangeStatusValidator{
+@Component
+class ChangeStatusValidatorImpl : ChangeStatusValidator {
+    override fun validate(changeStatusRequest: ChangeStatusRequest?) {
+        TODO("Not yet implemented")
+    }
 }

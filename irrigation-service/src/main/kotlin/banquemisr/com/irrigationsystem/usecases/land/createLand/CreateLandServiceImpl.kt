@@ -12,7 +12,7 @@ class CreateLandServiceImpl(
 ) : CreateLandService {
     override fun createLand(createLandRequest: CreateLandRequest?): CreateLandResponse {
         createLandValidator.validateCreateLandRequest(createLandRequest)
-        val landToCreate = createLandRequest?.land
+        createLandRequest?.land
         val newLand = Land(
             id = UUID.randomUUID().toString(),
 

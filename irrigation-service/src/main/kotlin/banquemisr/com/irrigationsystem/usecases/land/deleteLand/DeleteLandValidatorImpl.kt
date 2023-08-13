@@ -1,6 +1,5 @@
 package banquemisr.com.irrigationsystem.usecases.land.deleteLand
 
-import banquemisr.com.irrigationsystem.dto.DeleteLandRequest
 import org.springframework.stereotype.Component
 
 @Component

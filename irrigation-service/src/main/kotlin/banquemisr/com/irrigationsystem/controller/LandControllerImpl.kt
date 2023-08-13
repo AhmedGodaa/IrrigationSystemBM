@@ -1,42 +1,60 @@
 package banquemisr.com.irrigationsystem.controller
 
-import banquemisr.com.irrigationsystem.model.dto.request.LandIrrigateRequest
-import banquemisr.com.irrigationsystem.model.dto.response.*
 import banquemisr.com.irrigationsystem.model.dto.request.ChangeStatusRequest
-import banquemisr.com.irrigationsystem.service.LandService
+import banquemisr.com.irrigationsystem.model.dto.response.ChangeStatusResponse
+import banquemisr.com.irrigationsystem.model.dto.response.GetLandByIDResponse
+import banquemisr.com.irrigationsystem.usecases.land.changeStatus.ChangeStatusService
+import banquemisr.com.irrigationsystem.usecases.land.createLand.CreateLandRequest
+import banquemisr.com.irrigationsystem.usecases.land.createLand.CreateLandResponse
+import banquemisr.com.irrigationsystem.usecases.land.createLand.CreateLandService
+import banquemisr.com.irrigationsystem.usecases.land.deleteLand.DeleteLandRequest
+import banquemisr.com.irrigationsystem.usecases.land.deleteLand.DeleteLandResponse
+import banquemisr.com.irrigationsystem.usecases.land.deleteLand.DeleteLandService
+import banquemisr.com.irrigationsystem.usecases.land.getLandById.GetLandByIDRequest
+import banquemisr.com.irrigationsystem.usecases.land.getLandById.GetLandByIDService
+import banquemisr.com.irrigationsystem.usecases.land.getLands.GetLandsRequest
+import banquemisr.com.irrigationsystem.usecases.land.getLands.GetLandsResponse
+import banquemisr.com.irrigationsystem.usecases.land.getLands.GetLandsService
+import banquemisr.com.irrigationsystem.usecases.land.updateLand.UpdateLandRequest
+import banquemisr.com.irrigationsystem.usecases.land.updateLand.UpdateLandResponse
+import banquemisr.com.irrigationsystem.usecases.land.updateLand.UpdateLandService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 
 @Controller
-class LandControllerImpl(private val landService: LandService) : LandController {
+class LandControllerImpl(
+    private val deleteLandService: DeleteLandService,
+    private val updateLandService: UpdateLandService,
+    private val createLandService: CreateLandService,
+    private val changeStatusService: ChangeStatusService,
+    private val getLandByIDService: GetLandByIDService,
+    private val getLandsService: GetLandsService,
+) : LandController {
     override fun getLandById(id: String?): ResponseEntity<GetLandByIDResponse> {
-        return ResponseEntity.ok().body(landService.getLandById(id))
+        return ResponseEntity.ok().body(getLandByIDService.getLandById(GetLandByIDRequest(id = id)))
     }
 
-    override fun getListOfLand(): ResponseEntity<GetListOfLandResponse> {
-        return ResponseEntity.ok().body(landService.getListOfLand())
+    override fun getLands(): ResponseEntity<GetLandsResponse> {
+        return ResponseEntity.ok().body(getLandsService.getLands(GetLandsRequest()))
     }
 
-    override fun updateLand(landRequest: CreateLandRequest?): ResponseEntity<UpdateLandResponse> {
-        return ResponseEntity.ok().body(landService.updateLand(landRequest))
+    override fun updateLand(updateLandRequest: UpdateLandRequest?): ResponseEntity<UpdateLandResponse> {
+        return ResponseEntity.ok().body(updateLandService.updateLand(updateLandRequest))
     }
 
-    override fun deleteLand(id: String?): ResponseEntity<DeleteLandResponse> {
-        return ResponseEntity.ok().body(landService.deleteLand(id))
+    override fun deleteLand(deleteLandRequest: DeleteLandRequest?): ResponseEntity<DeleteLandResponse> {
+        return ResponseEntity.ok().body(deleteLandService.deleteLand(deleteLandRequest))
     }
 
-    override fun createLand(landRequest: CreateLandRequest?): ResponseEntity<CreateNewLandResponse> {
-        return ResponseEntity.ok().body(landService.createLand(landRequest))
+
+    override fun createLand(createLandRequest: CreateLandRequest?): ResponseEntity<CreateLandResponse> {
+        return ResponseEntity.ok().body(createLandService.createLand(createLandRequest))
 
     }
 
-    override fun irrigate(landIrrigateRequest: LandIrrigateRequest?): ResponseEntity<IrrigateResponse> {
-        return ResponseEntity.ok().body(landService.irrigate(landIrrigateRequest))
-
-    }
 
     override fun changeStatus(changeStatusRequest: ChangeStatusRequest?): ResponseEntity<ChangeStatusResponse> {
-        return ResponseEntity.ok().body(landService.changeStatus(changeStatusRequest))
+        return ResponseEntity.ok().body(changeStatusService.changeStatus(changeStatusRequest))
     }
 
 

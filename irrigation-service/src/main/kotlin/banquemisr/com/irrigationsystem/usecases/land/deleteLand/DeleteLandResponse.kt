@@ -1,4 +1,4 @@
-package banquemisr.com.irrigationsystem.model.dto.response
+package banquemisr.com.irrigationsystem.usecases.land.deleteLand
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
