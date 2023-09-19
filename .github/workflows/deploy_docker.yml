@@ -1,9 +1,13 @@
 name: Build and push Docker images
 
-on:
-  push:
-    branches:
-      - master
+on: 
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Image Version
+        default: v1.0.0
+        required: true
+        
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
@@ -27,20 +31,20 @@ jobs:
         run: |
           cd alert-service
           ./gradlew build
-          docker build -t ahmedgodaa/alert-service:latest .
-          docker push ahmedgodaa/alert-service:latest
+          docker build -t ahmedgodaa/alert-service:${{ github.event.inputs.version }} .
+          docker push ahmedgodaa/alert-service:${{ github.event.inputs.version }}
 
       - name: Build and Push Irrigation Service Docker image
         run: |
           cd irrigation-service 
           ./gradlew build  
-          docker build -t ahmedgodaa/irrigation-service:latest .
-          docker push ahmedgodaa/irrigation-service:latest
+          docker build -t ahmedgodaa/irrigation-service:${{ github.event.inputs.version }} .
+          docker push ahmedgodaa/irrigation-service:${{ github.event.inputs.version }}
 
 
       - name: Build and Push Sensor Service Docker image
         run: |
           cd sensor-service
           ./gradlew build     
-          docker build -t ahmedgodaa/sensor-service:latest .
-          docker push ahmedgodaa/sensor-service:latest
+          docker build -t ahmedgodaa/sensor-service:${{ github.event.inputs.version }} .
+          docker push ahmedgodaa/sensor-service:${{ github.event.inputs.version }}
