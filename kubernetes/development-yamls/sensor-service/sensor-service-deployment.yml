@@ -28,28 +28,52 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: MONGODB_URI
+            #            ConfigMaps
+            - name: ALERT_SERVICE_URL
               valueFrom:
-                secretKeyRef:
-                  name: sensor-service-secret
-                  key: MONGODB_URI
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: ALERT_SERVICE_URL
+
+            - name: IRRIGATION_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: IRRIGATION_SERVICE_URL
+
+            - name: SENSOR_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: SENSOR_SERVICE_URL
+
             - name: MONGODB_DATABASE
               valueFrom:
                 configMapKeyRef:
                   name: sensor-service-configmap
                   key: MONGODB_DATABASE
+
             - name: MONGODB_PERSIST_NULL_FIELDS
               valueFrom:
                 configMapKeyRef:
                   name: sensor-service-configmap
                   key: MONGODB_PERSIST_NULL_FIELDS
+
             - name: MONGODB_AUTO_INDEX_CREATION
               valueFrom:
                 configMapKeyRef:
                   name: sensor-service-configmap
                   key: MONGODB_AUTO_INDEX_CREATION
+
             - name: IRRIGATION_SERVICE_PORT
               valueFrom:
                 configMapKeyRef:
                   name: sensor-service-configmap
                   key: IRRIGATION_SERVICE_PORT
+
+            #                  Secret
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: sensor-service-secret
+                  key: MONGODB_URI
