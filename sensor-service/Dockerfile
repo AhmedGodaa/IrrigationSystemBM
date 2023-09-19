@@ -1,5 +1,5 @@
-FROM openjdk:17
+FROM amazoncorretto:17-alpine3.16:17
 WORKDIR /app
-EXPOSE 8445
-COPY /build/libs/sensiorservice-0.0.1.jar app.jar
+EXPOSE 8083
+COPY /build/libs/sensiorservice-0.0.1.jar sensiorservice-0.0.1.jar
 CMD ["java", "-jar", "sensiorservice-0.0.1.jar"]

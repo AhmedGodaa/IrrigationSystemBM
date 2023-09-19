@@ -2,16 +2,26 @@
 
 ### Deploy Application with Kubernetes ~~without helm~~
 
+- Deploy
+
 ```shell
 kubectl create namespace development
 
 kubectl apply -f kubernetes/development-yamls --recursive
 ```
 
+- Validate Deployment
+
+```shell
+kubectl get deploy,svc,secrets,cm,pod
+```
+```text
+
+```
+
 ### Microservices System Sequence
 
 ![256683967-8cd3b579-1d12-48d4-b107-3637f25462ac](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/7ee2357b-4873-4e4e-a6b1-d952474e8171)
-
 
 ### Postman Collection:
 
