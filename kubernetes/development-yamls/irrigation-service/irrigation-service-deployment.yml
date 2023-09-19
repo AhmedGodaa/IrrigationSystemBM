@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: irrigation-service
+  namespace: development
+  labels:
+    app: irrigation-service
+    env: development
+    version: v1.0.1
+spec:
+  selector:
+    matchLabels:
+      app: irrigation-service
+      env: development
+      version: v1.0.1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: irrigation-service
+        env: development
+        version: v1.0.1
+    spec:
+      containers:
+        - name: irrigation-service
+          image: ahmedgodaa/irrigation-service:v1.0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+#            ConfigMaps
+            - name: ALERT_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: ALERT_SERVICE_URL
+
+            - name: IRRIGATION_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: IRRIGATION_SERVICE_URL
+
+            - name: SENSOR_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: SENSOR_SERVICE_URL
+
+            - name: MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: MONGODB_DATABASE
+
+            - name: MONGODB_PERSIST_NULL_FIELDS
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: MONGODB_PERSIST_NULL_FIELDS
+
+            - name: MONGODB_AUTO_INDEX_CREATION
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: MONGODB_AUTO_INDEX_CREATION
+
+            - name: IRRIGATION_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: IRRIGATION_SERVICE_PORT
+#               Secrets
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: irrigation-service-secret
+                  key: MONGODB_URI

@@ -1,0 +1,144 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alert-service-deployment
+  namespace: development
+  labels:
+    app: alert-service
+    env: development
+    version: v1.0.1
+spec:
+  selector:
+    matchLabels:
+      app: alert-service
+      env: development
+      version: v1.0.1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: alert-service
+        env: development
+        version: v1.0.1
+    spec:
+      containers:
+        - name: alert-service
+          image: ahmedgodaa/alert-service:v1.0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8082
+          env:
+            #            ConfigMaps
+            - name: MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: MONGODB_DATABASE
+
+            - name: MONGODB_PERSIST_NULL_FIELDS
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: MONGODB_PERSIST_NULL_FIELDS
+
+            - name: MONGODB_AUTO_INDEX_CREATION
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: MONGODB_AUTO_INDEX_CREATION
+
+            - name: ALERT_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: ALERT_SERVICE_PORT
+
+            - name: ALERT_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: ALERT_SERVICE_URL
+
+            - name: IRRIGATION_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: IRRIGATION_SERVICE_URL
+
+            - name: SENSOR_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: SENSOR_SERVICE_URL
+            #                  Secrets
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: MONGODB_URI
+
+            - name: FIREBASE_CREDENTIAL_TYPE
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_TYPE
+
+            - name: FIREBASE_CREDENTIAL_PROJECT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_PROJECT_ID
+
+            - name: FIREBASE_CREDENTIAL_PRIVATE_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_PRIVATE_KEY_ID
+
+            - name: FIREBASE_CREDENTIAL_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_PRIVATE_KEY
+
+            - name: FIREBASE_CREDENTIAL_CLIENT_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_CLIENT_EMAIL
+
+            - name: FIREBASE_CREDENTIAL_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_CLIENT_ID
+
+            - name: FIREBASE_CREDENTIAL_AUTH_URI
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_AUTH_URI
+
+            - name: FIREBASE_CREDENTIAL_TOKEN_URI
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_TOKEN_URI
+
+            - name: FIREBASE_CREDENTIAL_AUTH_PROVIDER_X509_CERT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_AUTH_PROVIDER_X509_CERT_URL
+
+            - name: FIREBASE_CREDENTIAL_CLIENT_X509_CERT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_CREDENTIAL_CLIENT_X509_CERT_URL
+
+            - name: FIREBASE_UNIVERSE_DOMAIN
+              valueFrom:
+                secretKeyRef:
+                  name: alert-service-secret
+                  key: FIREBASE_UNIVERSE_DOMAIN

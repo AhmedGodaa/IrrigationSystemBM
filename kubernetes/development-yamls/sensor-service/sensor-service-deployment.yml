@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sensor-service
+  namespace: development
+  labels:
+    app: sensor-service
+    env: development
+    version: v1.0.1
+spec:
+  selector:
+    matchLabels:
+      app: sensor-service
+      env: development
+      version: v1.0.1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sensor-service
+        env: development
+        version: v1.0.1
+    spec:
+      containers:
+        - name: sensor-service
+          image: ahmedgodaa/sensor-service:v1.0.1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: sensor-service-secret
+                  key: MONGODB_URI
+            - name: MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: MONGODB_DATABASE
+            - name: MONGODB_PERSIST_NULL_FIELDS
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: MONGODB_PERSIST_NULL_FIELDS
+            - name: MONGODB_AUTO_INDEX_CREATION
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: MONGODB_AUTO_INDEX_CREATION
+            - name: IRRIGATION_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: IRRIGATION_SERVICE_PORT

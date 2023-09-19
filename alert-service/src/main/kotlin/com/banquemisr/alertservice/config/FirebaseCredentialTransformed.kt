@@ -13,7 +13,8 @@ data class FirebaseCredentialTransformed(
     var auth_uri: String? = null,
     var token_uri: String? = null,
     var auth_provider_x509_cert_url: String? = null,
-    var client_x509_cert_url: String? = null
+    var client_x509_cert_url: String? = null,
+    var universe_domain: String? = null
 ) {
      fun convertToString(): String {
         return "{\n" +

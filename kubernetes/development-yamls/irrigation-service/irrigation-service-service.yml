@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: irrigation-service-service
+  namespace: development
+spec:
+  selector:
+    app: irrigation-service
+    env: development
+    version: v1.0.2
+  ports:
+    - protocol: "TCP"
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
