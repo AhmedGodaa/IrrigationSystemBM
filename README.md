@@ -1,6 +1,11 @@
 # IrrigationSystem
 
-### Deploy Application with Kubernetes ~~without helm~~
+
+### Microservices System Sequence
+
+![256683967-8cd3b579-1d12-48d4-b107-3637f25462ac](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/7ee2357b-4873-4e4e-a6b1-d952474e8171)
+
+### Deploy with Kubernetes ~~without helm~~
 
 - Deploy
 
@@ -16,12 +21,33 @@ kubectl apply -f kubernetes/development-yamls --recursive
 kubectl get deploy,svc,secrets,cm,pod
 ```
 ```text
+NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/alert-service-deployment   1/1     1            1           2m55s
+deployment.apps/irrigation-service         1/1     1            1           2m55s
+deployment.apps/sensor-service             1/1     1            1           2m55s
+
+NAME                                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/alert-service-service        ClusterIP   10.96.132.207   <none>        8080/TCP   2m55s
+service/irrigation-service-service   ClusterIP   10.96.192.64    <none>        8080/TCP   2m55s
+service/sensor-service-service       ClusterIP   10.96.183.242   <none>        8080/TCP   2m54s
+
+NAME                               TYPE     DATA   AGE
+secret/alert-service-secret        Opaque   12     2m55s
+secret/irrigation-service-secret   Opaque   1      2m55s
+secret/sensor-service-secret       Opaque   1      2m55s
+
+NAME                                     DATA   AGE
+configmap/alert-service-configmap        7      2m55s
+configmap/irrigation-service-configmap   7      2m55s
+configmap/kube-root-ca.crt               1      2m57s
+configmap/sensor-service-configmap       7      2m55s
+
+NAME                                            READY   STATUS    RESTARTS      AGE
+pod/alert-service-deployment-7bd6d486bb-s9cwh   1/1     Running   0             2m55s
+pod/irrigation-service-65f784cc69-2f4b2         1/1     Running   0             2m55s
+pod/sensor-service-7c4c89b677-ldhf7             1/1     Running   2 (19s ago)   2m55s
 
 ```
-
-### Microservices System Sequence
-
-![256683967-8cd3b579-1d12-48d4-b107-3637f25462ac](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/7ee2357b-4873-4e4e-a6b1-d952474e8171)
 
 ### Postman Collection:
 
