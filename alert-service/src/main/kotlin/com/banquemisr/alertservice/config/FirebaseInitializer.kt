@@ -20,7 +20,7 @@ class FirebaseInitializer(private val firebaseCredentialTransformed: FirebaseCre
 
     @PostConstruct
     fun initializeFirebaseApp() {
-        logger.info("Initializing Firebase Credentails for the App...")
+        logger.info("Initializing Firebase Credentials for the App...")
         try {
             val credentials = loadFirebaseCredentials()
             val options = buildFirebaseOptions(credentials)

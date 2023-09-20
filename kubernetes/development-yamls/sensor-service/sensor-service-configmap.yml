@@ -7,8 +7,7 @@ data:
   MONGODB_DATABASE: "test"
   MONGODB_PERSIST_NULL_FIELDS: 'true'
   MONGODB_AUTO_INDEX_CREATION: 'true'
-  IRRIGATION_SERVICE_PORT: '8081'
+  SENSOR_SERVICE_PORT: '8081'
 
   ALERT_SERVICE_URL: "alert-service-service.development.svc.cluster.local"
   IRRIGATION_SERVICE_URL: "irrigation-service-service.development.svc.cluster.local"
-  SENSOR_SERVICE_URL: "sensor-service-service.development.svc.cluster.local"

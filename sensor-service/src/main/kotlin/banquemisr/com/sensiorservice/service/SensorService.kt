@@ -7,7 +7,7 @@ import banquemisr.com.sensiorservice.model.dto.SendNotificationResponse
 import banquemisr.com.sensiorservice.repos.SensorStateRepo
 import banquemisr.com.sensiorservice.repos.UserFCMTokenRepo
 import banquemisr.com.sensiorservice.utils.Constants
-import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
 import org.springframework.http.MediaType
@@ -16,7 +16,6 @@ import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 import java.net.URI
-import java.time.LocalDateTime
 import java.util.*
 
 
@@ -24,14 +23,16 @@ import java.util.*
 class SensorService(
     private val restTemplate: RestTemplate,
     private val sensorStateRepo: SensorStateRepo,
-    private val userFCMTokenRepo: UserFCMTokenRepo
+    private val userFCMTokenRepo: UserFCMTokenRepo,
+    @Value("service.irrigation.cluster.url") private val irrigationServiceUrl: String,
+    @Value("service.alert.cluster.url") private val alertServiceUrl: String
 ) {
 
     @Scheduled(fixedRate = 60000 * 1)
     fun irrigate() {
         if (sensorStateRepo.findById(Constants.SENSOR_ID).get().state == true) {
             val responseEntity: ResponseEntity<*> = restTemplate.getForEntity(
-                "${Constants.IRRIGATION_SERVICE_BASE_URL}/api/getAllLands",
+                "${irrigationServiceUrl}/api/getAllLands",
                 GetListOfLandResponse::class.java
             )
 
@@ -71,7 +72,7 @@ class SensorService(
     fun sendNotification(sendNotificationRequest: SendNotificationRequest): SendNotificationResponse {
         val headers = HttpHeaders()
         headers.contentType = MediaType.APPLICATION_JSON
-        val url = URI("${Constants.ALERT_SERVICE_BASE_URL}/api/sendNotification")
+        val url = URI("${alertServiceUrl}/api/sendNotification")
         val restTemplate = RestTemplate()
         val requestEntity: HttpEntity<SendNotificationRequest> = HttpEntity(sendNotificationRequest, headers)
         val responseEntity: ResponseEntity<SendNotificationResponse> =

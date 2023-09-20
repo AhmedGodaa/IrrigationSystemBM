@@ -26,26 +26,27 @@ spec:
           image: ahmedgodaa/sensor-service:v1.0.1
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 8081
           env:
+            - name : SENSOR_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: SENSOR_SERVICE_PORT
+
             #            ConfigMaps
             - name: ALERT_SERVICE_URL
               valueFrom:
                 configMapKeyRef:
-                  name: alert-service-configmap
+                  name: sensor-service-configmap
                   key: ALERT_SERVICE_URL
 
             - name: IRRIGATION_SERVICE_URL
               valueFrom:
                 configMapKeyRef:
-                  name: alert-service-configmap
+                  name: sensor-service-configmap
                   key: IRRIGATION_SERVICE_URL
 
-            - name: SENSOR_SERVICE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: alert-service-configmap
-                  key: SENSOR_SERVICE_URL
 
             - name: MONGODB_DATABASE
               valueFrom:
@@ -64,12 +65,6 @@ spec:
                 configMapKeyRef:
                   name: sensor-service-configmap
                   key: MONGODB_AUTO_INDEX_CREATION
-
-            - name: IRRIGATION_SERVICE_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: sensor-service-configmap
-                  key: IRRIGATION_SERVICE_PORT
 
             #                  Secret
             - name: MONGODB_URI

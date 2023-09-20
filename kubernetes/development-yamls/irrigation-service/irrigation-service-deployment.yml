@@ -32,19 +32,19 @@ spec:
             - name: ALERT_SERVICE_URL
               valueFrom:
                 configMapKeyRef:
-                  name: alert-service-configmap
+                  name: irrigation-service-configmap
                   key: ALERT_SERVICE_URL
 
             - name: IRRIGATION_SERVICE_URL
               valueFrom:
                 configMapKeyRef:
-                  name: alert-service-configmap
+                  name: irrigation-service-configmap
                   key: IRRIGATION_SERVICE_URL
 
             - name: SENSOR_SERVICE_URL
               valueFrom:
                 configMapKeyRef:
-                  name: alert-service-configmap
+                  name: irrigation-service-configmap
                   key: SENSOR_SERVICE_URL
 
             - name: MONGODB_DATABASE
