@@ -24,6 +24,9 @@ dependencies {
     implementation("com.google.firebase:firebase-admin:9.1.1")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.kafka:spring-kafka")
+    testImplementation("org.springframework.kafka:spring-kafka-test")
+
 
 }
 

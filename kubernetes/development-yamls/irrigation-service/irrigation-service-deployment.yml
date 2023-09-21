@@ -28,7 +28,7 @@ spec:
           ports:
             - containerPort: 8080
           env:
-#            ConfigMaps
+            #            ConfigMaps
             - name: ALERT_SERVICE_URL
               valueFrom:
                 configMapKeyRef:
@@ -70,9 +70,52 @@ spec:
                 configMapKeyRef:
                   name: irrigation-service-configmap
                   key: IRRIGATION_SERVICE_PORT
-#               Secrets
+
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: KAFKA_BOOTSTRAP_SERVERS
+
+            - name: KAFKA_SECURITY_PROTOCOL
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: KAFKA_SECURITY_PROTOCOL
+
+            - name: KAFKA_SASL_MECHANISM
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: KAFKA_SASL_MECHANISM
+
+            - name: KAFKA_LOGGING_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: KAFKA_LOGGING_LEVEL
+
+            - name: KAFKA_CONSUMER_GROUP_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: irrigation-service-configmap
+                  key: KAFKA_CONSUMER_GROUP_ID
+
+            #               Secrets
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
                   name: irrigation-service-secret
                   key: MONGODB_URI
+
+            - name: KAFKA_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: irrigation-service-secret
+                  key: KAFKA_USERNAME
+
+            - name: KAFKA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: irrigation-service-secret
+                  key: KAFKA_PASSWORD

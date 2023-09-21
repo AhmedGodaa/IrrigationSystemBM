@@ -12,3 +12,10 @@ data:
   ALERT_SERVICE_URL: "alert-service-service.development.svc.cluster.local"
   IRRIGATION_SERVICE_URL: "irrigation-service-service.development.svc.cluster.local"
   SENSOR_SERVICE_URL: "sensor-service-service.development.svc.cluster.local"
+
+
+  KAFKA_BOOTSTRAP_SERVERS: "my-release-kafka.default.svc.cluster.local:9092"
+  KAFKA_SECURITY_PROTOCOL: "SASL_PLAINTEXT"
+  KAFKA_SASL_MECHANISM: "PLAIN"
+  KAFKA_LOGGING_LEVEL: "OFF"
+  KAFKA_CONSUMER_GROUP_ID: "group_id"

@@ -28,7 +28,7 @@ spec:
           ports:
             - containerPort: 8081
           env:
-            - name : SENSOR_SERVICE_PORT
+            - name: SENSOR_SERVICE_PORT
               valueFrom:
                 configMapKeyRef:
                   name: sensor-service-configmap
@@ -46,7 +46,6 @@ spec:
                 configMapKeyRef:
                   name: sensor-service-configmap
                   key: IRRIGATION_SERVICE_URL
-
 
             - name: MONGODB_DATABASE
               valueFrom:
@@ -66,9 +65,46 @@ spec:
                   name: sensor-service-configmap
                   key: MONGODB_AUTO_INDEX_CREATION
 
+            - name: KAFKA_BOOTSTRAP_SERVERS
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: KAFKA_BOOTSTRAP_SERVERS
+
+            - name: KAFKA_SECURITY_PROTOCOL
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: KAFKA_SECURITY_PROTOCOL
+
+            - name: KAFKA_SASL_MECHANISM
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: KAFKA_SASL_MECHANISM
+
+            - name: KAFKA_LOGGING_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: KAFKA_LOGGING_LEVEL
+
+
             #                  Secret
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
                   name: sensor-service-secret
                   key: MONGODB_URI
+                  
+            - name: KAFKA_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: sensor-service-secret
+                  key: KAFKA_USERNAME
+
+            - name: KAFKA_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: sensor-service-secret
+                  key: KAFKA_PASSWORD
