@@ -24,20 +24,20 @@ spec:
       containers:
         - name: alert-service
           image: ahmedgodaa/alert-service:v1.0.1
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8082
-          readinessProbe:
-            httpGet:
-              port: 8082
-              path: /actuator/health/readiness
-            periodSeconds: 300
-          livenessProbe:
-            httpGet:
-              port: 8082
-              path: /actuator/health/liveness
-            periodSeconds: 300
-            initialDelaySeconds: 300
+#          readinessProbe:
+#            httpGet:
+#              port: 8082
+#              path: /actuator/health/readiness
+#            periodSeconds: 300
+#          livenessProbe:
+#            httpGet:
+#              port: 8082
+#              path: /actuator/health/liveness
+#            periodSeconds: 300
+#            initialDelaySeconds: 300
           env:
             #    < ------------              ConfigMap           ------------ >
 
