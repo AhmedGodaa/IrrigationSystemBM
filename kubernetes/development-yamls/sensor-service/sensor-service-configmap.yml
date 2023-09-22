@@ -4,16 +4,27 @@ metadata:
   name: sensor-service-configmap
   namespace: development
 data:
+  #  Server
+  SENSOR_SERVICE_PORT: '8081'
+
+  #  MongoDB
   MONGODB_DATABASE: "test"
   MONGODB_PERSIST_NULL_FIELDS: 'true'
   MONGODB_AUTO_INDEX_CREATION: 'true'
-  SENSOR_SERVICE_PORT: '8081'
 
+  # Service Discovery
   ALERT_SERVICE_URL: "alert-service-service.development.svc.cluster.local"
   IRRIGATION_SERVICE_URL: "irrigation-service-service.development.svc.cluster.local"
 
-
+  # Kafka
   KAFKA_BOOTSTRAP_SERVERS: "my-release-kafka.default.svc.cluster.local:9092"
   KAFKA_SECURITY_PROTOCOL: "SASL_PLAINTEXT"
   KAFKA_SASL_MECHANISM: "PLAIN"
   KAFKA_LOGGING_LEVEL: "OFF"
+
+  #  Actuator
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health,info,metrics,prometheus"
+  MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS: "always"
+  MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED: "true"
+  MANAGEMENT_HEALTH_LIVENESS_STATE_ENABLED: "true"
+  MANAGEMENT_HEALTH_READINESS_STATE_ENABLED: "true"

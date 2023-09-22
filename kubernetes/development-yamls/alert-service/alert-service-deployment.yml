@@ -27,8 +27,28 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082
+          readinessProbe:
+            httpGet:
+              port: 8082
+              path: /actuator/health/readiness
+            periodSeconds: 300
+          livenessProbe:
+            httpGet:
+              port: 8082
+              path: /actuator/health/liveness
+            periodSeconds: 300
+            initialDelaySeconds: 300
           env:
-            #            ConfigMaps
+            #    < ------------              ConfigMap           ------------ >
+
+            # Server
+            - name: ALERT_SERVICE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: ALERT_SERVICE_PORT
+
+            # MongoDB
             - name: MONGODB_DATABASE
               valueFrom:
                 configMapKeyRef:
@@ -47,12 +67,7 @@ spec:
                   name: alert-service-configmap
                   key: MONGODB_AUTO_INDEX_CREATION
 
-            - name: ALERT_SERVICE_PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: alert-service-configmap
-                  key: ALERT_SERVICE_PORT
-
+            # Service Discovery
             - name: ALERT_SERVICE_URL
               valueFrom:
                 configMapKeyRef:
@@ -70,13 +85,48 @@ spec:
                 configMapKeyRef:
                   name: alert-service-configmap
                   key: SENSOR_SERVICE_URL
-            #                  Secrets
+
+            # Actuator
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+
+            - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+
+            - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
+
+            - name: MANAGEMENT_HEALTH_LIVENESS_STATE_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: MANAGEMENT_HEALTH_LIVENESS_STATE_ENABLED
+
+            - name: MANAGEMENT_HEALTH_READINESS_STATE_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: alert-service-configmap
+                  key: MANAGEMENT_HEALTH_READINESS_STATE_ENABLED
+
+            #    < ------------              Secrets           ------------ >
+
+            # MongoDB
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
                   name: alert-service-secret
                   key: MONGODB_URI
 
+            # Firebase
             - name: FIREBASE_CREDENTIAL_TYPE
               valueFrom:
                 secretKeyRef:

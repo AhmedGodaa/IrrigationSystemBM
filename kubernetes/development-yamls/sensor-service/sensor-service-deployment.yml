@@ -27,26 +27,28 @@ spec:
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081
+          readinessProbe:
+            httpGet:
+              port: 8081
+              path: /actuator/health/readiness
+            periodSeconds: 300
+          livenessProbe:
+            httpGet:
+              port: 8081
+              path: /actuator/health/liveness
+            periodSeconds: 300
+            initialDelaySeconds: 300
           env:
+            #    < ------------              ConfigMap           ------------ >
+
+            # Server
             - name: SENSOR_SERVICE_PORT
               valueFrom:
                 configMapKeyRef:
                   name: sensor-service-configmap
                   key: SENSOR_SERVICE_PORT
 
-            #            ConfigMaps
-            - name: ALERT_SERVICE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: sensor-service-configmap
-                  key: ALERT_SERVICE_URL
-
-            - name: IRRIGATION_SERVICE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: sensor-service-configmap
-                  key: IRRIGATION_SERVICE_URL
-
+            # MongoDB
             - name: MONGODB_DATABASE
               valueFrom:
                 configMapKeyRef:
@@ -65,6 +67,20 @@ spec:
                   name: sensor-service-configmap
                   key: MONGODB_AUTO_INDEX_CREATION
 
+            # Service Discovery
+            - name: ALERT_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: ALERT_SERVICE_URL
+
+            - name: IRRIGATION_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: IRRIGATION_SERVICE_URL
+
+            # Kafka
             - name: KAFKA_BOOTSTRAP_SERVERS
               valueFrom:
                 configMapKeyRef:
@@ -89,14 +105,47 @@ spec:
                   name: sensor-service-configmap
                   key: KAFKA_LOGGING_LEVEL
 
+            # Actuator
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
 
-            #                  Secret
+            - name: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: MANAGEMENT_ENDPOINT_HEALTH_SHOW_DETAILS
+
+            - name: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: MANAGEMENT_ENDPOINT_HEALTH_PROBES_ENABLED
+
+            - name: MANAGEMENT_HEALTH_LIVENESS_STATE_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: MANAGEMENT_HEALTH_LIVENESS_STATE_ENABLED
+
+            - name: MANAGEMENT_HEALTH_READINESS_STATE_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: sensor-service-configmap
+                  key: MANAGEMENT_HEALTH_READINESS_STATE_ENABLED
+
+            #    < ------------              Secrets           ------------ >
+
+            # MongoDB
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
                   name: sensor-service-secret
                   key: MONGODB_URI
-                  
+
+            # Kafka
             - name: KAFKA_USERNAME
               valueFrom:
                 secretKeyRef:
