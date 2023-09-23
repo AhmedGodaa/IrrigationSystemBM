@@ -4,23 +4,18 @@ import banquemisr.com.sensiorservice.model.Land
 import banquemisr.com.sensiorservice.model.dto.GetAllLandsEvent
 import banquemisr.com.sensiorservice.model.dto.GetAllLandsResponseEvent
 import banquemisr.com.sensiorservice.model.dto.SendNotificationRequest
-import banquemisr.com.sensiorservice.model.dto.SendNotificationResponse
 import banquemisr.com.sensiorservice.repos.SensorStateRepo
 import banquemisr.com.sensiorservice.repos.UserFCMTokenRepo
 import banquemisr.com.sensiorservice.utils.Constants
+import banquemisr.com.sensiorservice.utils.KafkaFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.clients.producer.KafkaProducer
-import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.apache.kafka.common.serialization.StringDeserializer
-import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.kafka.support.serializer.JsonDeserializer
 import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
 import java.time.Duration
@@ -31,65 +26,42 @@ import java.util.*
 class SensorService(
     private val sensorStateRepo: SensorStateRepo,
     private val userFCMTokenRepo: UserFCMTokenRepo,
-    @Value("spring.kafka.bootstrap-servers") private val bootstrapServers: String,
-    @Value("service.alert.cluster.url") private val alertServiceUrl: String
+    @Value("spring.kafka.bootstrap-servers") private val bootstrapServers: String
+    private val kafkaFactory: KafkaFactory
 ) {
 
-    val kafkaProducer: KafkaProducer<String, GetAllLandsEvent> = createKafkaProducer()
-    val kafkaConsumer: KafkaConsumer<String, GetAllLandsResponseEvent> = createKafkaConsumer()
+    val landsEventProducer: KafkaProducer<String, GetAllLandsEvent> = kafkaFactory.createProducer()
+    val landsEventConsumer: KafkaConsumer<String, GetAllLandsResponseEvent> =
+        kafkaFactory.createConsumer(
+            "lands-event-consumer-group",
+            "lands-event-topic",
+        )
+    val notificationProducer: KafkaProducer<String, GetAllLandsEvent> = kafkaFactory.createProducer()
+    val notificationConsumer: KafkaConsumer<String, Any> =
+        kafkaFactory.createConsumer(
+            "notification-consumer-group",
+            "notification-response-topic",
+        )
+    val irrigationMessageProducer: KafkaProducer<String, Land> = kafkaFactory.createProducer()
 
 
-    private final fun createKafkaProducer(): KafkaProducer<String, GetAllLandsEvent> {
-        val props = Properties()
-        props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers
-        props[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
-        props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
-        return KafkaProducer(props)
-    }
-
-    private final fun createKafkaConsumer(): KafkaConsumer<String, GetAllLandsResponseEvent> {
-        val props = Properties()
-        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = bootstrapServers
-        props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.name
-        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = JsonDeserializer::class.java.name
-        props[ConsumerConfig.GROUP_ID_CONFIG] = "your_group_id"
-        val consumer = KafkaConsumer<String, GetAllLandsResponseEvent>(props)
-        consumer.subscribe(listOf("your_topic_name"))
-        return consumer
-    }
-
-    private fun kafkaNotificationProducer(): KafkaProducer<String, SendNotificationRequest> {
-        val props = Properties()
-        props[ProducerConfig.BOOTSTRAP_SERVERS_CONFIG] = "your-bootstrap-server"
-        props[ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG] = StringSerializer::class.java.name
-        props[ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG] = SendNotificationRequestSerializer::class.java.name
-        return KafkaProducer(props)
-    }
-
-    private fun kafkaNotificationConsumer(): KafkaConsumer<String, SendNotificationResponse> {
-        val props = Properties()
-        props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = "your-bootstrap-server"
-        props[ConsumerConfig.GROUP_ID_CONFIG] = "notification-consumer-group"
-        props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java.name
-        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = SendNotificationResponseDeserializer::class.java.name
-        return KafkaConsumer(props)
-    }
 
     // Function to produce lands event to Kafka topic
-    fun produceLandsEvent(landsEvent: GetAllLandsEvent) {
-        val record = ProducerRecord("your_topic_name", "landsEvent", landsEvent)
-        kafkaProducer.send(record)
-    }
+
 
     // Function to produce irrigation message to Kafka topic
     fun produceIrrigateMessage(land: Land) {
         val record = ProducerRecord("your_topic_name", "irrigate", land)
-        kafkaProducer.send(record)
+        irrigationMessageProducer.send(record)
     }
 
+    fun produceLandsEvent(landsEvent: GetAllLandsEvent) {
+        val record = ProducerRecord("your_topic_name", "landsEvent", landsEvent)
+        landsEventProducer.send(record)
+    }
     fun consumeLandsFromKafka(): List<Land> {
         val lands = mutableListOf<Land>()
-        val records = kafkaConsumer.poll(Duration.ofMillis(1000))
+        val records = landsEventConsumer.poll(Duration.ofMillis(1000))
 
         for (record in records) {
             val landResponse = record.value()
@@ -165,26 +137,24 @@ class SensorService(
 //    }
 
     suspend fun sendNotification(sendNotificationRequest: SendNotificationRequest) {
-        val producer = createKafkaProducer()
-        val consumer = createKafkaConsumer()
 
         try {
             // Produce message to Kafka topic
-            producer.send(ProducerRecord("notification-topic", null, sendNotificationRequest)).get()
+            notificationProducer.send(ProducerRecord("notification-topic", null, sendNotificationRequest)).get()
 
             // Asynchronously handle response
             val job = CoroutineScope(Dispatchers.Default).launch {
-                consumer.subscribe(listOf("notification-response-topic"))
+                notificationConsumer.subscribe(listOf("notification-response-topic"))
 
                 while (isActive) {
-                    val records = consumer.poll(Duration.ofMillis(100))
+                    val records = notificationConsumer.poll(Duration.ofMillis(100))
                     for (record in records) {
                         if (record.value().id == sendNotificationRequest.id) {
                             // Found matching response
                             val response = record.value()
                             // Do something with the response
-                            producer.close()
-                            consumer.close()
+                            notificationProducer.close()
+                            notificationConsumer.close()
                             return@launch
                         }
                     }
@@ -193,8 +163,8 @@ class SensorService(
 
             job.join()
         } finally {
-            producer.close()
-            consumer.close()
+            notificationProducer.close()
+            notificationConsumer.close()
         }
     }
 
