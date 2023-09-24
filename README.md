@@ -1,11 +1,48 @@
 # IrrigationSystem
 
+## Installation
 
-### Microservices System Sequence
+### Install Kafka bitnami helm chart
 
-![256683967-8cd3b579-1d12-48d4-b107-3637f25462ac](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/7ee2357b-4873-4e4e-a6b1-d952474e8171)
+- Install Chart
 
-### Deploy with Kubernetes ~~without helm~~
+```shell
+# Install the Kafka helm chart
+helm install my-release oci://registry-1.docker.io/bitnamicharts/kafka
+# Get Installed Kafka Helm Chart Password
+kubectl get secret my-release-kafka-user-passwords --namespace default -o jsonpath='{.data.client-passwords}' | base64 -d | cut -d , -f 1
+``` 
+
+> `📝` **Note:**
+>
+> Kafka can be accessed by consumers via following DNS name from within your cluster:
+> **my-release-kafka.default.svc.cluster.local:9200**
+
+- Provide Spring Project Configurations
+
+```text
+# at application.properties
+spring.kafka.producer.bootstrap-servers=${KAFKA_BOOTSTRAP_SERVERS}
+logging.level.org.apache.kafka=${KAFKA_LOGGING_LEVEL}
+spring.kafka.bootstrap-servers=${KAFKA_BOOTSTRAP_SERVERS}
+spring.kafka.security.protocol=${KAFKA_SECURITY_PROTOCOL}
+spring.kafka.properties.sasl.mechanism=${KAFKA_SASL_MECHANISM}
+spring.kafka.properties.sasl.jaas.config=org.apache.kafka.common.security.scram.ScramLoginModule required username="${KAFKA_USERNAME}" password="${KAFKA_PASSWORD}";
+```
+
+- Example of Configurations values can be found in the configmap and the
+  secrets [ConfigMap](kubernetes/development/sensor-service/sensor-service-configmap.yml) - [Secret](kubernetes/development/sensor-service/sensor-service-secret.yml)
+
+### Deploy Application with Kubernetes
+
+> `📝` **Note:**
+>
+> Application will run the **development** namespace meanwhile the kafka helm chart will be installed in the **default**
+> namespace.
+> To Switch between namespaces use the following command:
+> ```shell
+> kubectl config set-context --current --namespace=development
+> ```
 
 - Deploy
 
@@ -20,6 +57,7 @@ kubectl apply -f kubernetes/development-yamls --recursive
 ```shell
 kubectl get deploy,svc,secrets,cm,pod
 ```
+
 ```text
 NAME                                       READY   UP-TO-DATE   AVAILABLE   AGE
 deployment.apps/alert-service-deployment   1/1     1            1           2m55s
@@ -46,7 +84,6 @@ NAME                                            READY   STATUS    RESTARTS      
 pod/alert-service-deployment-7bd6d486bb-s9cwh   1/1     Running   0             2m55s
 pod/irrigation-service-65f784cc69-2f4b2         1/1     Running   0             2m55s
 pod/sensor-service-7c4c89b677-ldhf7             1/1     Running   2 (19s ago)   2m55s
-
 ```
 
 ### Postman Collection:
