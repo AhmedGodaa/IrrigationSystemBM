@@ -1,6 +1,6 @@
 package banquemisr.com.sensiorservice.service
 
-import banquemisr.com.sensiorservice.model.dto.GetAllLandsEvent
+import banquemisr.com.sensiorservice.events.GetAllLandsEvent
 import org.slf4j.LoggerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.support.KafkaHeaders

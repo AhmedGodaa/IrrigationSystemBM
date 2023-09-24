@@ -1,4 +1,4 @@
-package banquemisr.com.sensiorservice.model.dto
+package banquemisr.com.sensiorservice.events
 
 import banquemisr.com.sensiorservice.model.Land
 
