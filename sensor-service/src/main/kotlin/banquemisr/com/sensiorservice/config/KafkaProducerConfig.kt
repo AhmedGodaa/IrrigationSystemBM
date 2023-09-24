@@ -1,4 +1,4 @@
-package banquemisr.com.sensiorservice.utils
+package banquemisr.com.sensiorservice.config
 
 import org.apache.kafka.clients.admin.NewTopic
 import org.springframework.context.annotation.Bean

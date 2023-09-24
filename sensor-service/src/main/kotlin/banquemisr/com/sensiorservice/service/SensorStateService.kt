@@ -22,9 +22,7 @@ class SensorStateService(
                 message = "Sensor is turned on"
             )
         } catch (e: Exception) {
-            TurnOnSensorResponse(
-                message = "Sensor is not turned on"
-            )
+            throw IllegalArgumentException("Sensor is not turned on")
         }
 
     }
@@ -36,9 +34,7 @@ class SensorStateService(
                 message = "Sensor is turned off"
             )
         } catch (e: Exception) {
-            TurnOffSensorResponse(
-                message = "Sensor is not turned off"
-            )
+            throw IllegalArgumentException("Sensor is not turned off")
         }
     }
 
@@ -49,9 +45,7 @@ class SensorStateService(
                 message = "User FCM Token is updated"
             )
         } catch (e: Exception) {
-            UpdateUserFCMTokenResponse(
-                message = "User FCM Token is not updated"
-            )
+            throw IllegalArgumentException("User FCM Token is not updated")
         }
     }
 

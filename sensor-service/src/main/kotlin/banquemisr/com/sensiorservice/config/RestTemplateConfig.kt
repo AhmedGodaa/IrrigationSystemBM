@@ -1,5 +1,6 @@
-package banquemisr.com.sensiorservice.utils
+package banquemisr.com.sensiorservice.config
 
+import banquemisr.com.sensiorservice.utils.Constants
 import org.springframework.boot.web.client.RestTemplateBuilder
 import org.springframework.boot.web.client.RootUriTemplateHandler
 import org.springframework.context.annotation.Bean

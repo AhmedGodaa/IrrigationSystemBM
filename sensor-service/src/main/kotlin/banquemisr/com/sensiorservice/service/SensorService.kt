@@ -26,9 +26,8 @@ import java.util.*
 class SensorService(
     private val sensorStateRepo: SensorStateRepo,
     private val userFCMTokenRepo: UserFCMTokenRepo,
-    private val kafkaFactory: KafkaFactory
+    kafkaFactory: KafkaFactory
 ) {
-
     private val landsEventProducer: KafkaProducer<String, GetAllLandsEvent> = kafkaFactory.createProducer()
     private val landsEventConsumer: KafkaConsumer<String, GetAllLandsResponseEvent> =
         kafkaFactory.createConsumer("lands-event-consumer-group", "lands-event-topic")
@@ -45,6 +44,7 @@ class SensorService(
 
     fun produceLandsEvent(landsEvent: GetAllLandsEvent) {
         val record = ProducerRecord("your_topic_name", "landsEvent", landsEvent)
+        logger.info("produce land event $landsEvent")
         landsEventProducer.send(record)
     }
 

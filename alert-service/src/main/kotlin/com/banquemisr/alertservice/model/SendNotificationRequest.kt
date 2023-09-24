@@ -7,5 +7,4 @@ data class SendNotificationRequest(
     @JsonProperty("title") val title: String? = null,
     @JsonProperty("body") val body: String? = null,
     @JsonProperty("data") val data: Map<String, String>? = null
-
 )

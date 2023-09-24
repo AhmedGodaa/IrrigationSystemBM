@@ -1,4 +1,4 @@
-package banquemisr.com.sensiorservice
+package banquemisr.com.sensiorservice.controller
 
 import banquemisr.com.sensiorservice.model.SensorState
 import banquemisr.com.sensiorservice.model.dto.UpdateUserFCMTokenResponse
