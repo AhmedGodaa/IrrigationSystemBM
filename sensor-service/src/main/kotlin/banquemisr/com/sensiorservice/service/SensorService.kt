@@ -4,12 +4,14 @@ import banquemisr.com.sensiorservice.events.GetAllLandsEvent
 import banquemisr.com.sensiorservice.events.GetAllLandsResponseEvent
 import banquemisr.com.sensiorservice.model.Land
 import banquemisr.com.sensiorservice.model.dto.SendNotificationRequest
-import banquemisr.com.sensiorservice.model.dto.SendNotificationResponse
 import banquemisr.com.sensiorservice.repos.SensorStateRepo
 import banquemisr.com.sensiorservice.repos.UserFCMTokenRepo
 import banquemisr.com.sensiorservice.utils.Constants
 import banquemisr.com.sensiorservice.utils.KafkaFactory
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
@@ -31,8 +33,6 @@ class SensorService(
     private val landsEventConsumer: KafkaConsumer<String, GetAllLandsResponseEvent> =
         kafkaFactory.createConsumer("lands-event-consumer-group", "lands-event-topic")
     private val notificationProducer: KafkaProducer<String, SendNotificationRequest> = kafkaFactory.createProducer()
-    private val notificationConsumer: KafkaConsumer<String, SendNotificationResponse> =
-        kafkaFactory.createConsumer("notification-consumer-group", "notification-response-topic")
     private val irrigationMessageProducer: KafkaProducer<String, Land> = kafkaFactory.createProducer()
     private val logger = LoggerFactory.getLogger(SensorService::class.java)
 
@@ -48,45 +48,8 @@ class SensorService(
         landsEventProducer.send(record)
     }
 
-    fun produceNotificationMessage(sendNotificationRequest: SendNotificationRequest) {
-        val record = ProducerRecord("your_topic_name", "notification", sendNotificationRequest)
-        notificationProducer.send(record)
-    }
 
-    suspend fun consumeLandsFromKafka(
-        landsEventConsumer: KafkaConsumer<String, GetAllLandsResponseEvent>
-    ): List<Land> = withContext(Dispatchers.Default) {
-        val lands = mutableListOf<Land>()
-        val pollTimeout = Duration.ofMillis(1000) // Adjust the poll timeout as needed
-
-        landsEventConsumer.use { landsEventConsumer ->
-            val job = launch {
-                while (isActive) {
-                    val records = landsEventConsumer.poll(pollTimeout)
-                    for (record in records) {
-                        val landResponse = record.value()
-                        lands.addAll(landResponse.lands ?: emptyList())
-                    }
-                }
-            }
-
-            job.join() // Wait for the job to complete
-        }
-
-        lands
-    }
-
-    suspend fun sendNotification(sendNotificationRequest: SendNotificationRequest): SendNotificationResponse {
-        // Step 1: Send the notification to Kafka
-        sendToKafka(sendNotificationRequest)
-
-        // Step 2: Wait for and return the Kafka response
-        val kafkaResponses = waitForKafkaResponse(sendNotificationRequest)
-
-        return kafkaResponses.firstOrNull() ?: SendNotificationResponse()
-    }
-
-    private suspend fun sendToKafka(sendNotificationRequest: SendNotificationRequest) {
+    suspend fun sendNotification(sendNotificationRequest: SendNotificationRequest) {
         withContext(Dispatchers.IO) {
             notificationProducer.send(
                 ProducerRecord(
@@ -94,39 +57,32 @@ class SensorService(
                     null,
                     sendNotificationRequest
                 )
-            ).get()
+            )
         }
     }
 
-    private suspend fun waitForKafkaResponse(sendNotificationRequest: SendNotificationRequest): List<SendNotificationResponse> {
-        val responseRecords = mutableListOf<SendNotificationResponse>()
-        val myScope = CoroutineScope(Dispatchers.Default)
 
+    suspend fun consumeLandsFromKafka(landsEventConsumer: KafkaConsumer<String, GetAllLandsResponseEvent>): List<Land> =
+        withContext(Dispatchers.Default) {
+            val lands = mutableListOf<Land>()
+            val pollTimeout = Duration.ofMillis(1000) // Adjust the poll timeout as needed
+            landsEventConsumer.use { landsEventConsumer ->
+                val job = launch {
 
-
-        val responseJob = CoroutineScope(Dispatchers.Default).async {
-
-            try {
-                while (isActive) {
-                    val records = notificationConsumer.poll(Duration.ofMillis(100))
-                    for (record in records) {
-                        if (record.value().id == sendNotificationRequest.id) {
-                            // Found matching response
-                            responseRecords.add(record.value())
+                    while (isActive) {
+                        val records = landsEventConsumer.poll(pollTimeout)
+                        for (record in records) {
+                            val landResponse = record.value()
+                            lands.addAll(landResponse.lands ?: emptyList())
                         }
                     }
                 }
-            } catch (e: Exception) {
-                logger.error("Exception occurred while consuming records: ${e.message}")
-                throw e
-            } finally {
-                notificationConsumer.close()
-            }
-            responseRecords // Return all matching responses
-        }
-        return responseJob.await()
-    }
 
+                job.join() // Wait for the job to complete
+            }
+
+            lands
+        }
 
 
     @Scheduled(fixedRate = 60000 * 1)
@@ -148,10 +104,7 @@ class SensorService(
                 status = 200
             )
 
-            // Produce lands event to Kafka topic
             produceLandsEvent(landsEvent)
-
-            // Consume lands from Kafka topic
             val lands = consumeLandsFromKafka(landsEventConsumer)
 
             lands.forEach { land ->
