@@ -16,7 +16,7 @@ kubectl get secret my-release-kafka-user-passwords --namespace default -o jsonpa
 > `📝` **Note:**
 >
 > Kafka can be accessed by consumers via following DNS name from within your cluster:
-> **my-release-kafka.default.svc.cluster.local:9200**
+> **my-release-kafka.default.svc.cluster.local:9092**
 
 - Provide Spring Project Configurations
 
@@ -33,8 +33,9 @@ spring.kafka.properties.sasl.jaas.config=org.apache.kafka.common.security.scram.
 - Example of Configurations values can be found in the configmap and the
   secrets [ConfigMap](kubernetes/development/sensor-service/sensor-service-configmap.yml) - [Secret](kubernetes/development/sensor-service/sensor-service-secret.yml)
 
-### Deploy Application with Kubernetes
+### Deploy with Kubernetes
 
+**Without ArgoCD**
 > `📝` **Note:**
 >
 > Application will run the **development** namespace meanwhile the kafka helm chart will be installed in the **default**
@@ -52,7 +53,31 @@ kubectl create namespace development
 kubectl apply -f kubernetes/development-yamls --recursive
 ```
 
-- Validate Deployment
+### Deploy with k8s and ArgoCD
+
+- Install ArgoCD CRD `Custom Resource Definition`
+
+```shell
+# Create argocd namespace
+kubectl create namespace argocd
+# change context to argocd namespace
+kubectl config set-context --current --namespace argocd
+# Install ArgoCD CRD
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+# Get ArgoCD Server Password
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 --decode && echo
+# Add our Application to ArgoCD
+kubectl apply -f argocd/application.yml
+# Access ArgoCD Server
+kubectl port-forward --namespace argocd service/argocd-server 8080:443
+```
+
+> `📝` **Note:**
+>
+> ArgoCD each 3 minutes will check for changes in the repository and compare **Current State
+** `Current Deployed Applicaiton Yaml` with the **Desired State** `application yaml on git`.
+
+### Verify Installation
 
 ```shell
 kubectl get deploy,svc,secrets,cm,pod
