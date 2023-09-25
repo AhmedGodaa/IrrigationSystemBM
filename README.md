@@ -2,14 +2,37 @@
 
 ## Installation
 
-#### 🐋 Docker Hub Images
+<h4 align="center">🐋 Docker Hub Images</h4>
+<div align="center" style="text-align: center;">
+<table style="text-align: center;">
+  <tr>
+    <th><a href="https://hub.docker.com/u/ahmedgodaa">Services</a></th>
+    <th><a href="https://hub.docker.com/r/ahmedgodaa/sensor-service">Sensor Service</a></th>
+    <th><a href="https://hub.docker.com/r/ahmedgodaa/irrigation-service">Irrigation Service</a></th>
+    <th><a href="https://hub.docker.com/r/ahmedgodaa/alert-service">Alert Service</a></th>
+  </tr>
+  <tr>
+    <td><strong>Latest Image Version</strong></td>
+    <td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/sensor-service"><img src="https://img.shields.io/docker/v/ahmedgodaa/sensor-service?sort=semver" alt="Docker Image Version (latest semver)"></a></td>
+    <td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/irrigation-service"><img src="https://img.shields.io/docker/v/ahmedgodaa/irrigation-service?sort=semver" alt="Docker Image Version (latest semver)"></a></td>
+    <td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/alert-service"><img src="https://img.shields.io/docker/v/ahmedgodaa/alert-service?sort=semver" alt="Docker Image Version (latest semver)"></a></td>
+  </tr>
+  <tr>
+    <td><strong>Latest Image Size</strong></td>
+    <td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/sensor-service"><img src="https://img.shields.io/docker/image-size/ahmedgodaa/sensor-service?sort=semver" alt="Docker Image Size (latest semver)"></a></td>
+    <td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/irrigation-service"><img src="https://img.shields.io/docker/image-size/ahmedgodaa/irrigation-service?sort=semver" alt="Docker Image Size (latest semver)"></a></td>
+    <td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/alert-service"><img src="https://img.shields.io/docker/image-size/ahmedgodaa/alert-service?sort=semver" alt="Docker Image Size (latest semver)"></a></td>
+  </tr>
+<tr>
+<td><strong>Latest Image Pulls</strong></td>
+<td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/sensor-service"><img src="https://img.shields.io/docker/pulls/ahmedgodaa/sensor-service.svg" alt="Docker Pulls"></a></td>
+<td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/irrigation-service"><img src="https://img.shields.io/docker/pulls/ahmedgodaa/irrigation-service.svg" alt="Docker Pulls"></a></td>
+<td><a href="https://hub.docker.com/repository/docker/ahmedgodaa/alert-service"><img src="https://img.shields.io/docker/pulls/ahmedgodaa/alert-service.svg" alt="Docker Pulls"></a></td>
+</tr>
+</table>
+</div>
 
-| [Services](https://hub.docker.com/u/ahmedgodaa) | [Sensor Service](https://hub.docker.com/r/ahmedgodaa/sensor-service)                                                                                                                     | [Irrigation Service](https://hub.docker.com/r/ahmedgodaa/irrigation-service)                                                                                                             | [Alert Service](https://hub.docker.com/r/ahmedgodaa/alert-service)                                                                                                                       |
-|-------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Image Version**                               | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ahmedgodaa/alert-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/alert-service)       | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ahmedgodaa/alert-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/alert-service)       | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ahmedgodaa/alert-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/alert-service)       |
-| **Image Size**                                  | [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/ahmedgodaa/alert-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/alert-service) | [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/ahmedgodaa/alert-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/alert-service) | [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/ahmedgodaa/alert-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/alert-service) | 
-
-### Install Kafka bitnami helm chart
+## Install Kafka bitnami helm chart
 
 - Install Chart
 
@@ -40,7 +63,7 @@ spring.kafka.properties.sasl.jaas.config=org.apache.kafka.common.security.scram.
 - Example of Configurations values can be found in the configmap and the
   secrets [ConfigMap](kubernetes/development/sensor-service/sensor-service-configmap.yml) - [Secret](kubernetes/development/sensor-service/sensor-service-secret.yml)
 
-### Deploy with Kubernetes
+## Deploy with Kubernetes
 
 **Without ArgoCD**
 > `📝` **Note:**
@@ -60,7 +83,7 @@ kubectl create namespace development
 kubectl apply -f kubernetes/development-yamls --recursive
 ```
 
-### Deploy with k8s and ArgoCD
+## Deploy with k8s and ArgoCD
 
 - Install ArgoCD CRD `Custom Resource Definition`
 
@@ -84,7 +107,7 @@ kubectl port-forward --namespace argocd service/argocd-server 8080:443
 > ArgoCD each 3 minutes will check for changes in the repository and compare **Current State
 ** `Current Deployed Applicaiton Yaml` with the **Desired State** `application yaml on git`.
 
-### Verify Installation
+## Verify Installation
 
 ```shell
 kubectl get deploy,svc,secrets,cm,pod
