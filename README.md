@@ -2,6 +2,14 @@
 
 ## Installation
 
+#### Docker Hub Images
+
+| Service            | Docker Hub Image                                                                                                                                                                     |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Sensor Service](https://hub.docker.com/r/ahmedgodaa/sensor-service) | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ahmedgodaa/sensor-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/sensor-service) |
+| [Irrigation Service](https://hub.docker.com/r/ahmedgodaa/irrigation-service) | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ahmedgodaa/irrigation-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/irrigation-service) |
+| [Alert Service](https://hub.docker.com/r/ahmedgodaa/alert-service) | [![Docker Image Version (latest semver)](https://img.shields.io/docker/v/ahmedgodaa/alert-service?sort=semver)](https://hub.docker.com/repository/docker/ahmedgodaa/alert-service) |
+
 ### Install Kafka bitnami helm chart
 
 - Install Chart
