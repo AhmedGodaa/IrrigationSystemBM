@@ -149,7 +149,6 @@ pod/sensor-service-7c4c89b677-ldhf7             1/1     Running   2 (19s ago)   
   here: https://github.com/AhmedGodaa/IrrigationSystemBM/tree/production/postman-collections
 
 ![256684411-5983484b-f255-42d2-b0ef-0c18eefd30c7](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/dbabbc72-3f4d-49a8-8533-d1b0e9a8c25b)
-![256684484-679577d2-97b3-4035-9a7b-c893a8a5540a](https://github.com/AhmedGodaa/IrrigationSystemBM/assets/73083104/f71c197b-28ce-49ea-8126-8766f95ec9c1)
 
 ### MongoDB:
 
